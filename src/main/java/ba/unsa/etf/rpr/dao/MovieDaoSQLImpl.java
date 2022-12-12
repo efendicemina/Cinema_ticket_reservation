@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Movie;
-import ba.unsa.etf.rpr.domain.User;
 
 import java.io.FileReader;
 import java.sql.*;
