@@ -46,7 +46,26 @@ public class LoginController implements Initializable {
         if(usernameTextField.getText().isEmpty()!=false && passwordField.getText().isEmpty()!=false){
             loginMessageLabel.setText("Invalid login.");
         }
-        //else validateLogin();
+        else validateLogin();
     }
-
+    public void validateLogin(){
+        String insert = "SELECT count(1) from users where username='"+usernameTextField.getText()+"' AND password='"
+                +passwordField.getText()+"'";
+        try{
+            UserDaoSQLImpl u=new UserDaoSQLImpl();
+            PreparedStatement stmt = u.getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                if(rs.getInt(1)==1){
+                    loginMessageLabel.setText("top");
+                }
+                else{
+                    loginMessageLabel.setText("Invalid login.");
+                }
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
