@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.LoginController">
+   <left>
+      <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="image1" fitHeight="370.0" fitWidth="300.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/movie.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="24.0" layoutY="147.0" text="Username">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameTextField" layoutX="89.0" layoutY="144.0" prefHeight="26.0" prefWidth="173.0" promptText="Username" />
+            <Label layoutX="25.0" layoutY="181.0" text="Password">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" layoutX="89.0" layoutY="178.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
+            <Button fx:id="loginButton" layoutX="26.0" layoutY="243.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #f4c2c2;" text="Login">
+               <font>
+                  <Font name="Microsoft Tai Le" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="26.0" layoutY="288.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #d3d3d3;" text="Cancel">
+               <font>
+                  <Font name="Microsoft New Tai Lue" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="loginMessageLabel" layoutX="107.0" layoutY="215.0" prefHeight="19.0" prefWidth="79.0" textAlignment="JUSTIFY" textFill="#e80c0c" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="117.0" layoutY="337.0" />
+            <Hyperlink layoutX="57.0" layoutY="349.0" text="Don't have an account? Sign up!" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
