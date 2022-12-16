@@ -4,33 +4,24 @@ import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.stage.StageStyle;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class RegisterController {
     @FXML
     private Button cancelButton;
-    @FXML
-    private Button registerButton;
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -41,8 +32,7 @@ public class RegisterController {
     private TextField phoneField;
     @FXML
     private TextField nameField;
-    @FXML
-    private Hyperlink loginLink;
+
     @FXML
     private Label registerMessage;
     @FXML
@@ -60,22 +50,29 @@ public class RegisterController {
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
             emptyMessage.setText("Please fill the empty fields.");
         }
-        else if(validateUsername() && validateEmail()){
-            User user = new User();
-            user.setPhone(phoneField.getText());
-            user.setUsername(usernameField.getText());
-            user.setAdmin(false);
-            user.setPassword(passwordField.getText());
-            user.setName(nameField.getText());
-            user.setEmail(emailField.getText());
-            UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
-            userDaoSQL.add(user);
-            registerMessage.setText("You are registered. Click the link below.");
-            emptyMessage.setText("");
+        else{
+            boolean usernameOk=validateUsername();
+            boolean emailOk=validateEmail();
+            if(usernameOk && emailOk) {
+                User user = new User();
+                user.setPhone(phoneField.getText());
+                user.setUsername(usernameField.getText());
+                user.setAdmin(false);
+                user.setPassword(passwordField.getText());
+                user.setName(nameField.getText());
+                user.setEmail(emailField.getText());
+                UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
+                userDaoSQL.add(user);
+                registerMessage.setText("You are registered. Click the link below.");
+                emptyMessage.setText("");
+            }
         }
     }
     public boolean validateEmail(){
-        String regex = "^(.+)@(.+)$";
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
         //Compile regular expression to get the pattern
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(emailField.getText());
@@ -94,7 +91,7 @@ public class RegisterController {
             UserDaoSQLImpl u = new UserDaoSQLImpl();
             PreparedStatement stmt = u.getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) { // result set is iterator.
+            if(rs.next()) { // result set is iterator.
                 if (rs.getInt(1) != 0) {
                     emptyMessage.setText("");
                     usernameMessage.setText("Username already taken.");
@@ -110,17 +107,11 @@ public class RegisterController {
         }
          return false;
     }
-    public void usernameFieldOnAction(){
-
-    }
-    public void loginLinkOnAction()throws Exception{
-        Stage registerStage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        registerStage.initStyle(StageStyle.UNDECORATED);
-        registerStage.setScene(new Scene(root, 520,400));
-        registerStage.setResizable(false);
-        registerStage.show();
-        Stage stage=(Stage) loginLink.getScene().getWindow();
-        stage.close();
+    public void loginLinkOnAction(ActionEvent event)throws Exception{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
+        Stage stage=(Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
