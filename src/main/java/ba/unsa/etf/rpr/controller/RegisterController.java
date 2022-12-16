@@ -23,6 +23,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterController {
     @FXML
@@ -47,6 +49,8 @@ public class RegisterController {
     private Label emptyMessage;
     @FXML
     private Label usernameMessage;
+    @FXML
+    private Label emailMessage;
     public void cancelButtonOnAction(ActionEvent actionEvent) {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -56,7 +60,7 @@ public class RegisterController {
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
             emptyMessage.setText("Please fill the empty fields.");
         }
-        else if(validateUsername()){
+        else if(validateUsername() && validateEmail()){
             User user = new User();
             user.setPhone(phoneField.getText());
             user.setUsername(usernameField.getText());
@@ -68,8 +72,21 @@ public class RegisterController {
             userDaoSQL.add(user);
             registerMessage.setText("You are registered. Click the link below.");
             emptyMessage.setText("");
-            usernameMessage.setText("");
         }
+    }
+    public boolean validateEmail(){
+        String regex = "^(.+)@(.+)$";
+        //Compile regular expression to get the pattern
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailField.getText());
+        if(!matcher.matches()) {
+            emailMessage.setText("Invalid e-mail format.");
+        }
+            else{
+            emailMessage.setText("");
+            }
+
+        return matcher.matches();
     }
     public boolean validateUsername(){
         String insert = "SELECT count(username) from users where username='" + usernameField.getText() +"'";
