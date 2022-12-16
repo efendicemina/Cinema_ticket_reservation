@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.User;
+import javafx.scene.control.Label;
 
 import java.io.FileReader;
 import java.sql.*;
@@ -9,7 +10,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class UserDaoSQLImpl implements UserDao{
-    Connection connection;
+    private Connection connection;
+    public Connection getConnection(){return connection;}
     public UserDaoSQLImpl(){
         try {
             FileReader reader = new FileReader("src//main//resources//db.properties");
