@@ -27,14 +27,14 @@
          </children>
       </AnchorPane>
       <Label layoutX="47.0" layoutY="90.0" text="Full name" />
-      <Label layoutX="25.0" layoutY="143.0" />
+      <Label layoutX="104.0" layoutY="217.0" />
       <Label layoutX="49.0" layoutY="152.0" text="Phone number" />
       <Label layoutX="51.0" layoutY="217.0" prefHeight="18.0" prefWidth="45.0" text="E-mail " />
       <Label layoutX="47.0" layoutY="284.0" prefHeight="18.0" prefWidth="76.0" text="Username" />
       <TextField fx:id="nameField" layoutX="51.0" layoutY="108.0" prefHeight="26.0" prefWidth="423.0" promptText="First and last name" />
       <TextField fx:id="phoneField" layoutX="49.0" layoutY="176.0" prefHeight="26.0" prefWidth="423.0" promptText="Phone number" />
       <TextField fx:id="emailField" layoutX="49.0" layoutY="244.0" prefHeight="26.0" prefWidth="423.0" promptText="E-mail" />
-      <TextField fx:id="usernameField" layoutX="49.0" layoutY="305.0" onAction="#usernameFieldOnAction" prefHeight="26.0" prefWidth="423.0" promptText="Username" />
+      <TextField fx:id="usernameField" layoutX="49.0" layoutY="305.0" prefHeight="26.0" prefWidth="423.0" promptText="Username" />
       <Label layoutX="49.0" layoutY="350.0" prefHeight="18.0" prefWidth="76.0" text="Password" />
       <PasswordField fx:id="passwordField" layoutX="49.0" layoutY="377.0" prefHeight="26.0" prefWidth="423.0" promptText="Password" />
       <Button fx:id="registerButton" layoutX="161.0" layoutY="440.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #f4c2c2;" text="Register" textFill="#0d0000" />
@@ -44,5 +44,6 @@
       <Label fx:id="registerMessage" layoutX="151.0" layoutY="529.0" prefHeight="18.0" prefWidth="254.0" />
       <Label fx:id="emptyMessage" layoutX="183.0" layoutY="415.0" prefHeight="18.0" prefWidth="161.0" textFill="#e10e0e" />
       <Label fx:id="usernameMessage" layoutX="122.0" layoutY="285.0" prefHeight="18.0" prefWidth="150.0" textFill="#cd0d0d" />
+      <Label fx:id="emailMessage" layoutX="104.0" layoutY="218.0" prefHeight="18.0" prefWidth="161.0" textFill="#d31313" />
    </children>
 </AnchorPane>
