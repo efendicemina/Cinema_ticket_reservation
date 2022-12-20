@@ -38,25 +38,13 @@ public class LoginController  {
         if(usernameTextField.getText().isEmpty() && passwordField.getText().isEmpty()){
             loginMessageLabel.setText("Invalid login.");
         }
-        else validateLogin();
-    }
-    public void validateLogin() {
-        String insert = "SELECT count(1) from users where username='" + usernameTextField.getText() + "' AND password='"
-                + passwordField.getText() + "'";
-        try {
+        else {
             UserDaoSQLImpl u = new UserDaoSQLImpl();
-            PreparedStatement stmt = u.getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) { // result set is iterator.
-                if (rs.getInt(1) == 1) {
-                    loginMessageLabel.setText("top");
-                } else {
-                    loginMessageLabel.setText("Invalid login.");
-                }
+            if (u.validateLogin(usernameTextField.getText(),passwordField.getText())) {
+                loginMessageLabel.setText("top");
+            } else {
+                loginMessageLabel.setText("Invalid login.");
             }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     public void registerLinkOnAction(ActionEvent event)throws Exception{
