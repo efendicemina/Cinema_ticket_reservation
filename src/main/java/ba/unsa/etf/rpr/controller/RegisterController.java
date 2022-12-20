@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,7 +56,7 @@ public class RegisterController {
         Matcher matcher = pattern.matcher(emailField);
         return matcher.matches();
     }
-    public void registerButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    public void registerButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException {
         if (usernameField.getText().isEmpty()  || passwordField.getText().isEmpty()  || emailField.getText().isEmpty() ||
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
             emptyMessage.setText("Please fill the empty fields.");
