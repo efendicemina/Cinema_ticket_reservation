@@ -3,11 +3,12 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
 
-import java.io.FileReader;
-import java.sql.*;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
