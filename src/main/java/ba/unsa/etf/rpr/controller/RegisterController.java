@@ -49,10 +49,25 @@ public class RegisterController {
         if (usernameField.getText().isEmpty()  || passwordField.getText().isEmpty()  || emailField.getText().isEmpty() ||
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
             emptyMessage.setText("Please fill the empty fields.");
+            if(usernameField.getText().isEmpty()) usernameMessage.setText("");
+            if(emailField.getText().isEmpty()) emailMessage.setText("");
         }
         else{
-            boolean usernameOk=validateUsername();
-            boolean emailOk=validateEmail();
+            emptyMessage.setText("");
+            UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
+            boolean emailOk=userDaoSQL.validateEmail(emailField.getText());
+            boolean usernameOk=userDaoSQL.validateUsername(usernameField.getText());
+            if(!emailOk) {
+                emailMessage.setText("Invalid e-mail format.");
+            }
+            else{
+                emailMessage.setText("");
+            }
+            if (!usernameOk) {
+                usernameMessage.setText("Username already taken.");
+            } else {
+                usernameMessage.setText("");
+            }
             if(usernameOk && emailOk) {
                 User user = new User();
                 user.setPhone(phoneField.getText());
@@ -61,51 +76,11 @@ public class RegisterController {
                 user.setPassword(passwordField.getText());
                 user.setName(nameField.getText());
                 user.setEmail(emailField.getText());
-                UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
-                userDaoSQL.add(user);
-                registerMessage.setText("You are registered. Click the link below.");
-                emptyMessage.setText("");
-            }
-        }
-    }
-    public boolean validateEmail(){
-        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-        //Compile regular expression to get the pattern
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(emailField.getText());
-        if(!matcher.matches()) {
-            emailMessage.setText("Invalid e-mail format.");
-        }
-            else{
-            emailMessage.setText("");
-            }
-
-        return matcher.matches();
-    }
-    public boolean validateUsername(){
-        String insert = "SELECT count(username) from users where username='" + usernameField.getText() +"'";
-        try {
-            UserDaoSQLImpl u = new UserDaoSQLImpl();
-            PreparedStatement stmt = u.getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()) { // result set is iterator.
-                if (rs.getInt(1) != 0) {
-                    emptyMessage.setText("");
+                    userDaoSQL.add(user);
+                    registerMessage.setText("You are registered. Click the link below.");
                     usernameMessage.setText("Username already taken.");
-                    return false;
-                } else {
-                    usernameMessage.setText("");
-                    return true;
-                }
             }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-         return false;
     }
     public void loginLinkOnAction(ActionEvent event)throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
