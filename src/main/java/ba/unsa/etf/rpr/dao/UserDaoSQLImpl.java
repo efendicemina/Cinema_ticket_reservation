@@ -8,10 +8,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserDaoSQLImpl implements UserDao{
     private Connection connection;
-    public Connection getConnection(){return connection;}
+
+    public Connection getConnection() {
+        return connection;
+    }
+
     public UserDaoSQLImpl(){
         try {
             FileReader reader = new FileReader("src//main//resources//db.properties");
@@ -129,5 +135,35 @@ public class UserDaoSQLImpl implements UserDao{
             e.printStackTrace(); // poor error handling
         }
         return users;
+    }
+    public boolean validateEmail(String emailField){
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+        //Compile regular expression to get the pattern
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailField);
+        return matcher.matches();
+    }
+    public boolean validateLogin(String usernameTextField, String passwordField) {
+        String insert = "SELECT count(1) from users where username='" + usernameTextField + "' AND password='"
+                + passwordField + "'";
+        try {
+            UserDaoSQLImpl u = new UserDaoSQLImpl();
+            PreparedStatement stmt = u.getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) { // result set is iterator.
+                if (rs.getInt(1) == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
