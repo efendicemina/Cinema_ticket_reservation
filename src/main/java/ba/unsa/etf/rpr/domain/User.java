@@ -1,6 +1,9 @@
 package ba.unsa.etf.rpr.domain;
-
-public class User {
+/**
+ * Class holding all essential information about our users.
+ * @author Emina Efendic
+ */
+public class User implements Idable{
     private int id;
     private String name;
     private String phone;

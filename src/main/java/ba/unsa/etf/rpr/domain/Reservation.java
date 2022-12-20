@@ -1,6 +1,9 @@
 package ba.unsa.etf.rpr.domain;
-
-public class Reservation {
+/**
+ * Class that contains information about reservations made for movie tickets.
+ * @author Emina Efendic
+ */
+public class Reservation implements Idable{
     private int id;
     private User user;
     private Movie movie;

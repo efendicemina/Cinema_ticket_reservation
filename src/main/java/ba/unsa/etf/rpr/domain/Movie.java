@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.sql.Timestamp;
-
-public class Movie {
+/**
+ * Class that contains information about movie tickets available for purchase.
+ * @author Emina Efendic
+ */
+public class Movie implements Idable{
     private int id;
     private String name;
     private String genre;
