@@ -40,7 +40,7 @@ public class LoginController  {
         }
         else {
             UserDaoSQLImpl u = new UserDaoSQLImpl();
-            if (u.validateLogin(usernameTextField.getText(),passwordField.getText())) {
+            if (u.checkUsernamePassword(usernameTextField.getText(),passwordField.getText())) {
                 loginMessageLabel.setText("top");
             } else {
                 loginMessageLabel.setText("Invalid login.");
