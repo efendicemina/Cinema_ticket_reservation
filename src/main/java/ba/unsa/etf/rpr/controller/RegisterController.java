@@ -45,6 +45,16 @@ public class RegisterController {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+    public boolean checkEmail(String emailField){
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+        //Compile regular expression to get the pattern
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailField);
+        return matcher.matches();
+    }
     public void registerButtonOnAction(javafx.event.ActionEvent actionEvent) {
         if (usernameField.getText().isEmpty()  || passwordField.getText().isEmpty()  || emailField.getText().isEmpty() ||
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
@@ -55,20 +65,20 @@ public class RegisterController {
         else{
             emptyMessage.setText("");
             UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
-            boolean emailOk=userDaoSQL.validateEmail(emailField.getText());
-            boolean usernameOk=userDaoSQL.validateUsername(usernameField.getText());
+            boolean emailOk=checkEmail(emailField.getText());
+            boolean usernameFound=userDaoSQL.findUsername(usernameField.getText());
             if(!emailOk) {
                 emailMessage.setText("Invalid e-mail format.");
             }
             else{
                 emailMessage.setText("");
             }
-            if (!usernameOk) {
+            if (usernameFound) {
                 usernameMessage.setText("Username already taken.");
             } else {
                 usernameMessage.setText("");
             }
-            if(usernameOk && emailOk) {
+            if(!usernameFound && emailOk) {
                 User user = new User();
                 user.setPhone(phoneField.getText());
                 user.setUsername(usernameField.getText());
