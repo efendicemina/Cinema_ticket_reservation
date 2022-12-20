@@ -1,12 +1,11 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Movie;
-import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
 
-import java.io.FileReader;
-import java.sql.*;
-import java.util.*;
+import java.sql.ResultSet;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MovieDaoSQLImpl extends AbstractDao<Movie> implements MovieDao{
     public MovieDaoSQLImpl(){
