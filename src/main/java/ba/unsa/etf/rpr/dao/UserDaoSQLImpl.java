@@ -146,6 +146,25 @@ public class UserDaoSQLImpl implements UserDao{
         Matcher matcher = pattern.matcher(emailField);
         return matcher.matches();
     }
+    public boolean validateUsername(String usernameField){
+        String insert = "SELECT count(username) from users where username='" + usernameField +"'";
+        try {
+            UserDaoSQLImpl u = new UserDaoSQLImpl();
+            PreparedStatement stmt = u.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) { // result set is iterator.
+                if (rs.getInt(1) != 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean validateLogin(String usernameTextField, String passwordField) {
         String insert = "SELECT count(1) from users where username='" + usernameTextField + "' AND password='"
                 + passwordField + "'";
