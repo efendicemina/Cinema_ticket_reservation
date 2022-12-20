@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controller;
 
+import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,7 @@ public class LoginController  {
         stage.close();
     }
 
-    public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException {
         if(usernameTextField.getText().isEmpty() && passwordField.getText().isEmpty()){
             loginMessageLabel.setText("Invalid login.");
         }
