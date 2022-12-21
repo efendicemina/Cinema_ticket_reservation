@@ -64,6 +64,23 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         }
         return false;
     }
+
+    @Override
+    public boolean isAdmin(String usernameField) throws MovieException {
+        String insert = "SELECT username from users where admin=1";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) { // result set is iterator.
+                if(rs.getString(1).equals(usernameField)) return true;
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public boolean checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException{
         String insert = "SELECT count(1) from users where username='" + usernameTextField + "' AND password='"
