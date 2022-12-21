@@ -11,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.util.Objects;
 
 
@@ -31,14 +33,28 @@ public class LoginController  {
         stage.close();
     }
 
-    public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException {
+    public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException, IOException {
         if(usernameTextField.getText().isEmpty() && passwordField.getText().isEmpty()){
             loginMessageLabel.setText("Invalid login.");
         }
         else {
             UserDaoSQLImpl u = new UserDaoSQLImpl();
             if (u.checkUsernamePassword(usernameTextField.getText(),passwordField.getText())) {
-                loginMessageLabel.setText("top");
+                if(u.isAdmin(usernameTextField.getText())){
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/admin.fxml")));
+                    Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
+                    Scene scene=new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                else {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/user.fxml")));
+                    Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
+                    Scene scene=new Scene(root);
+                    stage.setScene(scene);
+                    stage.initStyle(StageStyle.DECORATED);
+                    stage.show();
+                }
             } else {
                 loginMessageLabel.setText("Invalid login.");
             }
