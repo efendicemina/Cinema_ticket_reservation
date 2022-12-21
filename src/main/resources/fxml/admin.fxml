@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="595.0" prefWidth="223.0" style="-fx-background-color: #89cff0;" BorderPane.alignment="CENTER">
@@ -37,10 +36,11 @@
                <content>
                   <TableView prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="136.0" text="Name" />
-                      <TableColumn prefWidth="130.0" text="Genre" />
-                        <TableColumn prefWidth="123.0" text="Duration" />
-                        <TableColumn prefWidth="138.0" text="Date" />
+                      <TableColumn prefWidth="33.0" text="ID" />
+                      <TableColumn prefWidth="153.0" text="NAME" />
+                        <TableColumn prefWidth="142.0" text="GENRE" />
+                        <TableColumn prefWidth="109.0" text="DATE" />
+                        <TableColumn prefWidth="90.0" text="DURATION" />
                     </columns>
                   </TableView>
                </content>
@@ -49,8 +49,12 @@
                <content>
                   <TableView prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="75.0" text="ID" />
+                      <TableColumn prefWidth="91.0" text="NAME" />
+                        <TableColumn prefWidth="93.0" text="PHONE" />
+                        <TableColumn prefWidth="77.0" text="EMAIL" />
+                        <TableColumn prefWidth="95.0" text="USERNAME" />
+                        <TableColumn prefWidth="96.0" text="PASSWORD" />
                     </columns>
                   </TableView>
                </content>
@@ -59,8 +63,11 @@
                <content>
                   <TableView prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="40.0" text="ID" />
+                      <TableColumn prefWidth="104.0" text="USER ID" />
+                        <TableColumn prefWidth="103.0" text="MOVIE_ID" />
+                        <TableColumn prefWidth="137.0" text="SECTOR" />
+                        <TableColumn prefWidth="143.0" text="TICKETS" />
                     </columns>
                   </TableView>
                </content>
