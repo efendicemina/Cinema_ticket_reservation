@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,63 +16,84 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.AdminController">
    <left>
-      <AnchorPane prefHeight="595.0" prefWidth="223.0" style="-fx-background-color: #89cff0;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="573.0" prefWidth="217.0" style="-fx-background-color: #ADD8E6;" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutX="33.0" layoutY="14.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="37.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/admin.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="73.0" layoutY="34.0" prefHeight="17.0" prefWidth="92.0" text="WELCOME">
+            <Label layoutX="66.0" layoutY="14.0" prefHeight="17.0" prefWidth="92.0" text="WELCOME">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <Button layoutX="14.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="Log out" />
+            <Button layoutX="122.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="Cancel" />
+            <AnchorPane layoutX="9.0" layoutY="101.0" />
+            <MenuButton layoutX="24.0" layoutY="315.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" text="         Add">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <font>
+                  <Font name="Bookman Old Style" size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="24.0" layoutY="376.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" text="       Delete">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font name="Bookman Old Style" size="18.0" />
+               </font>
+            </MenuButton>
+            <ImageView fitHeight="190.0" fitWidth="174.0" layoutX="27.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/admin.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="567.0" prefWidth="524.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Movies">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="33.0" text="ID" />
-                      <TableColumn prefWidth="153.0" text="NAME" />
-                        <TableColumn prefWidth="142.0" text="GENRE" />
-                        <TableColumn prefWidth="109.0" text="DATE" />
-                        <TableColumn prefWidth="90.0" text="DURATION" />
+                      <TableColumn fx:id="midColumn" prefWidth="33.0" text="ID" />
+                      <TableColumn fx:id="mnameColumn" prefWidth="153.0" text="NAME" />
+                        <TableColumn fx:id="genreColumn" prefWidth="142.0" text="GENRE" />
+                        <TableColumn fx:id="dateColumn" prefWidth="109.0" text="DATE" />
+                        <TableColumn fx:id="durationColumn" prefWidth="90.0" text="DURATION" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
           <Tab text="Users">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="91.0" text="NAME" />
-                        <TableColumn prefWidth="93.0" text="PHONE" />
-                        <TableColumn prefWidth="77.0" text="EMAIL" />
-                        <TableColumn prefWidth="95.0" text="USERNAME" />
-                        <TableColumn prefWidth="96.0" text="PASSWORD" />
+                      <TableColumn fx:id="uidColumn" prefWidth="42.0" text="ID" />
+                      <TableColumn fx:id="unameColumn" prefWidth="124.0" text="NAME" />
+                        <TableColumn fx:id="phoneColumn" prefWidth="93.0" text="PHONE" />
+                        <TableColumn fx:id="emailColumn" prefWidth="77.0" text="EMAIL" />
+                        <TableColumn fx:id="usernameColumn" prefWidth="95.0" text="USERNAME" />
+                        <TableColumn fx:id="passwordColumn" prefWidth="96.0" text="PASSWORD" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
             <Tab text="Reservations">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="40.0" text="ID" />
-                      <TableColumn prefWidth="104.0" text="USER ID" />
-                        <TableColumn prefWidth="103.0" text="MOVIE_ID" />
-                        <TableColumn prefWidth="137.0" text="SECTOR" />
-                        <TableColumn prefWidth="143.0" text="TICKETS" />
+                      <TableColumn fx:id="ridColumn" prefWidth="40.0" text="ID" />
+                      <TableColumn fx:id="user_idColumn" prefWidth="104.0" text="USER ID" />
+                        <TableColumn fx:id="movie_idColumn" prefWidth="103.0" text="MOVIE ID" />
+                        <TableColumn fx:id="sectorColumn" prefWidth="137.0" text="SECTOR" />
+                        <TableColumn fx:id="ticketColumn" prefWidth="143.0" text="TICKETS" />
                     </columns>
                   </TableView>
                </content>
@@ -75,4 +101,22 @@
         </tabs>
       </TabPane>
    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Movie" />
+                  <MenuItem mnemonicParsing="false" text="User" />
+                  <MenuItem mnemonicParsing="false" text="Reservation" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>
