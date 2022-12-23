@@ -22,8 +22,8 @@
             <AnchorPane layoutX="9.0" layoutY="101.0" />
             <MenuButton layoutX="24.0" layoutY="315.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #9ACD32;" text="         Add">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Movie" />
+                <MenuItem mnemonicParsing="false" text="User" />
               </items>
                <font>
                   <Font name="Bookman Old Style" size="18.0" />
@@ -31,8 +31,8 @@
             </MenuButton>
             <MenuButton layoutX="24.0" layoutY="376.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" style="-fx-background-color: #FFB6C1;" text="       Delete">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem mnemonicParsing="false" text="Movie" />
+                  <MenuItem mnemonicParsing="false" text="User" />
                </items>
                <font>
                   <Font name="Bookman Old Style" size="18.0" />
@@ -53,6 +53,15 @@
                   <Image url="@../images/logout.png" />
                </image>
             </ImageView>
+            <MenuButton layoutX="24.0" layoutY="436.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #c0c0c0;" text="       Update">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Movie" />
+                  <MenuItem mnemonicParsing="false" text="User" />
+               </items>
+               <font>
+                  <Font name="Bookman Old Style" size="18.0" />
+               </font>
+            </MenuButton>
          </children>
       </AnchorPane>
    </left>
@@ -105,13 +114,6 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Movie" />
-                  <MenuItem mnemonicParsing="false" text="User" />
-                  <MenuItem mnemonicParsing="false" text="Reservation" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
