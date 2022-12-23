@@ -22,8 +22,8 @@
             <AnchorPane layoutX="9.0" layoutY="101.0" />
             <MenuButton layoutX="24.0" layoutY="315.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #9ACD32;" text="         Add">
               <items>
-                <MenuItem mnemonicParsing="false" text="Movie" />
-                <MenuItem mnemonicParsing="false" text="User" />
+                <MenuItem mnemonicParsing="false" onAction="#addMovieOnAction" text="Movie" />
+                <MenuItem mnemonicParsing="false" onAction="#addUserOnAction" text="User" />
               </items>
                <font>
                   <Font name="Bookman Old Style" size="18.0" />
@@ -31,8 +31,8 @@
             </MenuButton>
             <MenuButton layoutX="24.0" layoutY="376.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" style="-fx-background-color: #FFB6C1;" text="       Delete">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Movie" />
-                  <MenuItem mnemonicParsing="false" text="User" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteMovieOnAction" text="Movie" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteUserOnAction" text="User" />
                </items>
                <font>
                   <Font name="Bookman Old Style" size="18.0" />
@@ -55,8 +55,8 @@
             </ImageView>
             <MenuButton layoutX="24.0" layoutY="436.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #c0c0c0;" text="       Update">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Movie" />
-                  <MenuItem mnemonicParsing="false" text="User" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateMovieOnAction" text="Movie" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateUserOnAction" text="User" />
                </items>
                <font>
                   <Font name="Bookman Old Style" size="18.0" />
