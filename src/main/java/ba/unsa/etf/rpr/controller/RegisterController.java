@@ -89,7 +89,9 @@ public class RegisterController {
                 user.setEmail(emailField.getText());
                     userDaoSQL.add(user);
                     registerMessage.setText("You are registered. Click the link below.");
-                    usernameMessage.setText("Username already taken.");
+            }
+            else{
+                registerMessage.setText("");
             }
         }
     }
