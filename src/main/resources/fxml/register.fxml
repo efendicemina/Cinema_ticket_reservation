@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="520.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1//src/main/resources/images/registerBackground.jpg');" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.RegisterController">
    <children>
-      <AnchorPane prefHeight="65.0" prefWidth="520.0" style="-fx-background-color: #c0c0c0;">
+      <AnchorPane blendMode="HARD_LIGHT" prefHeight="65.0" prefWidth="520.0" style="-fx-background-color: aqua;">
          <children>
             <ImageView fitHeight="49.0" fitWidth="52.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
