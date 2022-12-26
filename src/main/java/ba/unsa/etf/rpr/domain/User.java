@@ -1,4 +1,7 @@
 package ba.unsa.etf.rpr.domain;
+
+import java.util.Objects;
+
 /**
  * Class holding all essential information about our users.
  * @author Emina Efendic
@@ -66,5 +69,17 @@ public class User implements Idable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password,phone,admin, username);
     }
 }
