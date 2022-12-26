@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.AdminController">
    <left>
-      <AnchorPane prefHeight="573.0" prefWidth="217.0" style="-fx-background-color: #ADD8E6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="573.0" prefWidth="217.0" style="-fx-background-color: #fceeed;" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutX="33.0" layoutY="14.0" />
             <AnchorPane layoutX="9.0" layoutY="101.0" />
@@ -38,12 +38,12 @@
                   <Font name="Bookman Old Style" size="18.0" />
                </font>
             </MenuButton>
-            <ImageView fitHeight="137.0" fitWidth="119.0" layoutX="48.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="180.0" fitWidth="160.0" layoutX="27.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/admin.png" />
+                  <Image url="@../images/cinemaTicketTransparent.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="145.0" layoutX="23.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="119.0" fitWidth="190.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/welcome.png" />
                </image>
@@ -70,7 +70,7 @@
         <tabs>
           <Tab text="Movies">
                <content>
-                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-opacity: 0.8; -fx-text-fill: white;">
                     <columns>
                       <TableColumn fx:id="midColumn" prefWidth="33.0" text="ID" />
                       <TableColumn fx:id="mnameColumn" prefWidth="153.0" text="NAME" />
@@ -83,7 +83,7 @@
             </Tab>
           <Tab text="Users">
                <content>
-                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-opacity: 0.8; -fx-text-fill: white;">
                     <columns>
                       <TableColumn fx:id="uidColumn" prefWidth="42.0" text="ID" />
                       <TableColumn fx:id="unameColumn" prefWidth="124.0" text="NAME" />
@@ -97,7 +97,7 @@
             </Tab>
             <Tab text="Reservations">
                <content>
-                  <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-text-fill: white; -fx-opacity: 0.8;">
                     <columns>
                       <TableColumn fx:id="ridColumn" prefWidth="40.0" text="ID" />
                       <TableColumn fx:id="user_idColumn" prefWidth="104.0" text="USER ID" />
