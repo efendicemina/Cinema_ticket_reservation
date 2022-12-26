@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.sql.Timestamp;
+import java.util.Objects;
+
 /**
  * Class that contains information about movie tickets available for purchase.
  * @author Emina Efendic
@@ -104,5 +106,17 @@ public class Movie implements Idable{
 
     public void setP_capacity(int p_capacity) {
         this.p_capacity = p_capacity;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return id == movie.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name,genre, date_time, duration, r_price, l_price, p_price, r_capacity, l_capacity, p_capacity);
     }
 }
