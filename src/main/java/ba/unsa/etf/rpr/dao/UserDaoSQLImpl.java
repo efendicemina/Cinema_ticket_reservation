@@ -1,19 +1,20 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * MySQL implementation of the DAO
+ * @author Emina Efendic
+ */
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
-
-    public UserDaoSQLImpl(){
+    public UserDaoSQLImpl() {
         super("users");
     }
 
@@ -29,7 +30,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             return user;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new MovieException(e.getMessage(), e);
         }
     }
@@ -46,9 +47,6 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         item.put("password", object.getPassword());
         return item;
     }
-
-
-
     @Override
     public boolean findUsername(String usernameField) throws MovieException{
         String insert = "SELECT count(username) from users where username='" + usernameField +"'";
