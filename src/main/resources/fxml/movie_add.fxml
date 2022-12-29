@@ -28,7 +28,7 @@
       <DatePicker fx:id="dateField" layoutX="81.0" layoutY="204.0" prefHeight="26.0" prefWidth="156.0" />
       <Label layoutX="16.0" layoutY="314.0" text="Duration" />
       <ChoiceBox fx:id="durationBox" layoutX="81.0" layoutY="310.0" prefHeight="26.0" prefWidth="156.0" />
-      <Button layoutX="345.0" layoutY="344.0" mnemonicParsing="false" onAction="#okButtonOnAction" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #9ACD32;" text="OK" />
+      <Button layoutX="345.0" layoutY="344.0" mnemonicParsing="false" onAction="#okButtonOnAction" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #9ACD32;" text="ADD" />
       <ChoiceBox fx:id="hourBox" layoutX="81.0" layoutY="259.0" prefHeight="23.0" prefWidth="78.0" />
       <ChoiceBox fx:id="minBox" layoutX="170.0" layoutY="259.0" prefHeight="26.0" prefWidth="78.0" />
       <Label layoutX="23.0" layoutY="259.0" text="Time" />
