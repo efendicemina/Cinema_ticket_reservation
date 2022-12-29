@@ -16,7 +16,7 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
     public Reservation row2object(ResultSet rs) throws MovieException {
         try {
             Reservation reservation = new Reservation();
-            reservation.setId(rs.getInt("reservation_id"));
+            reservation.setId(rs.getInt("id"));
             reservation.setUser(DaoFactory.userDao().getById(rs.getInt("user_id")));
             reservation.setMovie(DaoFactory.movieDao().getById(rs.getInt("movie_id")));
             reservation.setSector(rs.getString("sector"));
@@ -30,7 +30,7 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
     @Override
     public Map<String, Object> object2row(Reservation object) {
         Map<String, Object> item = new TreeMap<String, Object>();
-        item.put("reservation_id", object.getId());
+        item.put("id", object.getId());
         item.put("user_id", object.getUser().getId());
         item.put("movie_id", object.getMovie().getId());
         item.put("sector", object.getSector());
