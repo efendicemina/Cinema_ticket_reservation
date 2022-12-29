@@ -52,7 +52,6 @@ public class LoginController  {
                     Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
                     Scene scene=new Scene(root);
                     stage.setScene(scene);
-                    stage.initStyle(StageStyle.DECORATED);
                     stage.show();
                 }
             } else {
