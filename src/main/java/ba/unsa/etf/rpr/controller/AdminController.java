@@ -3,14 +3,11 @@ package ba.unsa.etf.rpr.controller;
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.business.ReservationManager;
 import ba.unsa.etf.rpr.business.UserManager;
-import ba.unsa.etf.rpr.dao.MovieDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,10 +25,7 @@ import ba.unsa.etf.rpr.business.MovieManager;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -134,31 +128,25 @@ public class AdminController {
     }
 
     public void addMovieOnAction(ActionEvent actionEvent) {
+        openDialog("Add movie", "/fxml/movie_add.fxml");
 
-    }
-
-    public void addUserOnAction(ActionEvent actionEvent) {
     }
 
     public void deleteMovieOnAction(ActionEvent actionEvent) {
     }
 
-    public void deleteUserOnAction(ActionEvent actionEvent) {
-    }
+
 
     public void updateMovieOnAction(ActionEvent actionEvent) {
     }
 
-    public void updateUserOnAction(ActionEvent actionEvent) {
-    }
 
     public void aboutOnAction(ActionEvent actionEvent) throws IOException {
-        openDialog("about", "/fxml/admin_about.fxml", null);
+        openDialog("About", "/fxml/admin_about.fxml");
     }
-    private void openDialog(String title, String file, Object controller){
+    private void openDialog(String title, String file){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
-            loader.setController(controller);
             Stage stage = new Stage();
             stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setTitle(title);
@@ -167,5 +155,12 @@ public class AdminController {
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+    public void createMovie(String name, String genre, Timestamp date, Integer duration){
+      Movie movie=new Movie();
+      movie.setName(name);
+      movie.setGenre(genre);
+      movie.setDuration(duration);
+      movie.setDate_time(date);
     }
 }
