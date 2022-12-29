@@ -18,14 +18,15 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ba.unsa.etf.rpr.business.MovieManager;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -35,6 +36,9 @@ public class AdminController {
     private final UserManager userManager = new UserManager();
     private final ReservationManager reservationManager = new ReservationManager();
     @FXML
+    BorderPane adminPane;
+
+    @FXML
     public TableView<Movie> movieTable;
     @FXML
     public TableColumn<Movie, String> midColumn;
@@ -43,7 +47,7 @@ public class AdminController {
     @FXML
     public TableColumn<Movie, String> genreColumn;
     @FXML
-    public TableColumn<Movie, Timestamp> dateColumn;
+    public TableColumn<Movie, LocalDate> dateColumn;
     @FXML
     public TableColumn<Movie, String> durationColumn;
 
@@ -74,27 +78,28 @@ public class AdminController {
 
     @FXML
     public void initialize() {
-        midColumn.setCellValueFactory(new PropertyValueFactory<Movie,String>("id"));
-        mnameColumn.setCellValueFactory(new PropertyValueFactory<Movie,String>("name"));
-        genreColumn.setCellValueFactory(new PropertyValueFactory<Movie,String>("genre"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Movie, Timestamp>("date_time"));
+        midColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("id"));
+        mnameColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("name"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("genre"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Movie, LocalDate>("date_time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("duration"));
         refreshMovies();
-        uidColumn.setCellValueFactory(new PropertyValueFactory<User,String>("id"));
-        unameColumn.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<User,String>("email"));
+        uidColumn.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
+        unameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
         refreshUsers();
-        ridColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("id"));
-        movie_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("movie_id"));
-        user_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("user_id"));
+        ridColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("id"));
+        movie_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("movie_id"));
+        user_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("user_id"));
         sectorColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("sector"));
         ticketColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("ticket"));
         refreshReservations();
 
     }
-    private void refreshMovies(){
+
+    void refreshMovies() {
         try {
             movieTable.setItems(FXCollections.observableList(movieManager.getAll()));
             movieTable.refresh();
@@ -103,7 +108,7 @@ public class AdminController {
         }
     }
 
-    private void refreshUsers(){
+    private void refreshUsers() {
         try {
             userTable.setItems(FXCollections.observableList(userManager.getAll()));
             userTable.refresh();
@@ -111,7 +116,8 @@ public class AdminController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    private void refreshReservations(){
+
+    private void refreshReservations() {
         try {
             reservationTable.setItems(FXCollections.observableList(reservationManager.getAll()));
             reservationTable.refresh();
@@ -119,10 +125,11 @@ public class AdminController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
     public void logoutOnAction(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
-        Stage stage=(Stage)((javafx.scene.Node)mouseEvent.getSource()).getScene().getWindow();
-        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -136,7 +143,6 @@ public class AdminController {
     }
 
 
-
     public void updateMovieOnAction(ActionEvent actionEvent) {
     }
 
@@ -144,7 +150,8 @@ public class AdminController {
     public void aboutOnAction(ActionEvent actionEvent) throws IOException {
         openDialog("About", "/fxml/admin_about.fxml");
     }
-    private void openDialog(String title, String file){
+
+    private void openDialog(String title, String file) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
@@ -152,15 +159,21 @@ public class AdminController {
             stage.setTitle(title);
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
-        }catch (Exception e){
+            stage.setOnHiding(event -> {
+                ((Stage) adminPane.getScene().getWindow()).show();
+                refreshMovies();
+            });
+        } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    public void createMovie(String name, String genre, Timestamp date, Integer duration){
-      Movie movie=new Movie();
-      movie.setName(name);
-      movie.setGenre(genre);
-      movie.setDuration(duration);
-      movie.setDate_time(date);
+
+    public Movie createMovie(String name, String genre, LocalDateTime date, Integer duration) throws ParseException {
+        Movie movie = new Movie();
+        movie.setName(name);
+        movie.setGenre(genre);
+        movie.setDuration(duration);
+        movie.setDate_time(date);
+        return movie;
     }
 }
