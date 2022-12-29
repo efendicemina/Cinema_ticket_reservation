@@ -22,7 +22,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     public User row2object(ResultSet rs) throws MovieException {
         try {
             User user = new User();
-            user.setId(rs.getInt("user_id"));
+            user.setId(rs.getInt("id"));
             user.setName(rs.getString("name"));
             user.setPhone(rs.getString("phone"));
             user.setEmail(rs.getString("email"));
@@ -38,7 +38,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     @Override
     public Map<String, Object> object2row(User object) {
         Map<String, Object> item = new TreeMap<String, Object>();
-        item.put("user_id", object.getId());
+        item.put("id", object.getId());
         item.put("name", object.getName());
         item.put("phone", object.getPhone());
         item.put("email", object.getEmail());
