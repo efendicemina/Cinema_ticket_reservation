@@ -140,10 +140,12 @@ public class AdminController {
     }
 
     public void deleteMovieOnAction(ActionEvent actionEvent) {
+        openDialog("Delete movie", "/fxml/movie_delete.fxml");
     }
 
 
     public void updateMovieOnAction(ActionEvent actionEvent) {
+        openDialog("Update movie", "/fxml/movie_update.fxml");
     }
 
 
