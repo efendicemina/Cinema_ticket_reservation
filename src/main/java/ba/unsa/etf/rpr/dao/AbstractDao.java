@@ -9,35 +9,61 @@ import java.util.*;
 /**
  * Abstract class that implements core DAO CRUD methods for every entity
  *
- * @author Dino Keco
+ * @author Emina Efendic
  */
 public abstract class AbstractDao<T extends Idable> implements Dao<T>{
 
-    private Connection connection;
+    private static Connection connection = null;
     private String tableName;
 
     public AbstractDao(String tableName) {
-        try{
-            this.tableName = tableName;
-            Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("db.properties").openStream());
-            String url = p.getProperty("url");
-            String username = p.getProperty("user");
-            String password = p.getProperty("password");
-            this.connection = DriverManager.getConnection(url, username, password);
-        }catch (Exception e){
-            e.printStackTrace();
-            System.exit(0);
+        this.tableName = tableName;
+        if(connection==null) createConnection();
+    }
+
+    private static void createConnection(){
+        if(AbstractDao.connection==null) {
+            try {
+                Properties p = new Properties();
+                p.load(ClassLoader.getSystemResource("db.properties").openStream());
+                String url = p.getProperty("url");
+                String username = p.getProperty("user");
+                String password = p.getProperty("password");
+                AbstractDao.connection = DriverManager.getConnection(url, username, password);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
         }
     }
 
-    public Connection getConnection(){
-        return this.connection;
+    public static Connection getConnection(){
+        return AbstractDao.connection;
     }
 
     public void setConnection(Connection connection){
-        this.connection = connection;
+        if(AbstractDao.connection!=null) {
+            try {
+                AbstractDao.connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        AbstractDao.connection = connection;
     }
+
+    public void removeConnection(){
+        if(this.connection!=null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                //throw new RuntimeException(e);
+                e.printStackTrace();
+                System.out.println("REMOVE CONNECTION METHOD ERROR: Unable to close connection on database");
+            }
+        }
+    }
+
 
     /**
      * Method for mapping ResultSet into Object
@@ -52,7 +78,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
      * @param object - a bean object for specific table
      * @return key, value sorted map of object
      */
-    public abstract Map<String, Object> object2row(T object) throws MovieException;
+    public abstract Map<String, Object> object2row(T object);
 
     public T getById(int id) throws MovieException {
         return executeQueryUnique("SELECT * FROM "+this.tableName+" WHERE id = ?", new Object[]{id});
@@ -73,7 +99,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
-    public T add(T item) throws MovieException{
+    public T add(T item) throws   MovieException{
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
 
