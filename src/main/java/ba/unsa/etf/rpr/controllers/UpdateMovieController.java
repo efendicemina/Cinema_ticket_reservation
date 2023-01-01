@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.controller;
+package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.domain.Movie;
@@ -6,7 +6,6 @@ import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
