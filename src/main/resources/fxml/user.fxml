@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ba.unsa.etf.rpr.controller.UserController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.UserController">
+   <left>
+      <AnchorPane prefHeight="609.0" prefWidth="187.0" style="-fx-background-color: #fceeed;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="70.0" layoutX="14.0" layoutY="537.0" onMouseClicked="#logoutOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logout.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="176.0" layoutX="5.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/welcome.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="279.0" fitWidth="166.0" layoutX="11.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cinemaTicketTransparent.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="24.0" layoutY="305.0" text="The Silver Screen">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="377.0" prefHeight="28.0" prefWidth="159.0" text="Where the movie " textFill="#6b4562">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="405.0" text="comes to you!" textFill="#5a435b">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="120.0" text="NAME" />
+          <TableColumn fx:id="genreColumn" prefWidth="119.0" text="GENRE" />
+            <TableColumn fx:id="dateColumn" prefWidth="121.0" text="DATE AND TIME" />
+            <TableColumn fx:id="durationColumn" prefWidth="102.0" text="DURATION" />
+            <TableColumn fx:id="bookingColumn" prefWidth="88.0" text="BOOKING" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
