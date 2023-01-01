@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.controller;
+package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.business.ReservationManager;
