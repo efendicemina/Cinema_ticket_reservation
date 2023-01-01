@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="adminPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.AdminController">
+<BorderPane fx:id="adminPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="595.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminController">
    <left>
       <AnchorPane prefHeight="573.0" prefWidth="217.0" style="-fx-background-color: #fceeed;" BorderPane.alignment="CENTER">
          <children>
@@ -50,7 +50,7 @@
                       <TableColumn fx:id="midColumn" prefWidth="34.0" text="ID" />
                       <TableColumn fx:id="mnameColumn" prefWidth="152.0" text="NAME" />
                         <TableColumn fx:id="genreColumn" prefWidth="116.0" text="GENRE" />
-                        <TableColumn fx:id="dateColumn" prefWidth="144.0" text="DATE" />
+                        <TableColumn fx:id="dateColumn" prefWidth="144.0" text="DATE AND TIME" />
                         <TableColumn fx:id="durationColumn" prefWidth="81.0" text="DURATION" />
                     </columns>
                   </TableView>
