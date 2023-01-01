@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.controllers.components.ButtonCellFactory;
 import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class UserController {
     private final MovieManager movieManager = new MovieManager();
@@ -78,5 +82,25 @@ public class UserController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void aboutOnAction(ActionEvent actionEvent) {
+        openDialog("About", "/fxml/user_about.fxml");
+    }
+    private void openDialog(String title, String file) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            Stage stage = new Stage();
+            stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle(title);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage) userScreen.getScene().getWindow()).show();
+                refreshMovies();
+            });
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
