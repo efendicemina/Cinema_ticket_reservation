@@ -9,7 +9,7 @@ import ba.unsa.etf.rpr.exception.MovieException;
  * @author Emina Efendic
  */
 public interface UserDao extends Dao<User> {
-    boolean checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException;
+    Integer checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException;
     boolean findUsername(String usernameField) throws MovieException;
     boolean isAdmin(String usernameField) throws MovieException;
 }
