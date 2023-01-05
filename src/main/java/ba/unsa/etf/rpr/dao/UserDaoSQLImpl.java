@@ -80,19 +80,19 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     }
 
     @Override
-    public boolean checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException{
-        String insert = "SELECT count(1) from users where username='" + usernameTextField + "' AND password='"
+    public Integer checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException{
+        String insert = "SELECT id from users where username='" + usernameTextField + "' AND password='"
                 + passwordField + "'";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) { // result set is iterator.
-                return rs.getInt(1) == 1;
+                return rs.getInt(1);
             }
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }
