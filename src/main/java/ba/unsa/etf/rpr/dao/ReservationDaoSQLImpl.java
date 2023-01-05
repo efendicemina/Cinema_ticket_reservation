@@ -20,7 +20,6 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
             reservation.setUser(DaoFactory.userDao().getById(rs.getInt("user_id")));
             reservation.setMovie(DaoFactory.movieDao().getById(rs.getInt("movie_id")));
             reservation.setSector(rs.getString("sector"));
-            reservation.setTickets(rs.getInt("tickets"));
             return reservation;
         } catch (Exception e) {
             throw new MovieException(e.getMessage(), e);
@@ -34,7 +33,6 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
         item.put("user_id", object.getUser().getId());
         item.put("movie_id", object.getMovie().getId());
         item.put("sector", object.getSector());
-        item.put("tickets", object.getTickets());
         return item;
     }
 }
