@@ -91,10 +91,9 @@ public class AdminController {
         passwordColumn.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
         refreshUsers();
         ridColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("id"));
-        movie_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("movie_id"));
-        user_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("user_id"));
+        movie_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("movie"));
+        user_idColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("user"));
         sectorColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("sector"));
-        ticketColumn.setCellValueFactory(new PropertyValueFactory<Reservation, String>("ticket"));
         refreshReservations();
 
     }
