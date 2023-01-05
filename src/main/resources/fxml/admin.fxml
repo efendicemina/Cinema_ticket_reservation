@@ -73,11 +73,10 @@
                <content>
                   <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-text-fill: white; -fx-opacity: 0.8;">
                     <columns>
-                      <TableColumn fx:id="ridColumn" prefWidth="68.0" text="ID" />
-                      <TableColumn fx:id="user_idColumn" prefWidth="107.0" text="USER ID" />
-                        <TableColumn fx:id="movie_idColumn" prefWidth="130.0" text="MOVIE ID" />
-                        <TableColumn fx:id="sectorColumn" prefWidth="129.0" text="SECTOR" />
-                        <TableColumn fx:id="ticketColumn" prefWidth="93.0" text="TICKETS" />
+                      <TableColumn fx:id="ridColumn" prefWidth="84.0" text="ID" />
+                      <TableColumn fx:id="user_idColumn" prefWidth="142.0" text="USERNAME" />
+                        <TableColumn fx:id="movie_idColumn" prefWidth="191.0" text="MOVIE NAME" />
+                        <TableColumn fx:id="sectorColumn" prefWidth="116.0" text="SEAT" />
                     </columns>
                   </TableView>
                </content>
