@@ -70,4 +70,9 @@ public class Movie implements Idable{
     public int hashCode() {
         return Objects.hash(id, name,genre, date_time, duration);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
