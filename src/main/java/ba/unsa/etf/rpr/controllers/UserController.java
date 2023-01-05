@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -39,6 +40,7 @@ public class UserController {
     public TableColumn<Movie, Integer> durationColumn;
     @FXML
     public TableColumn<Movie, Integer> bookingColumn;
+    private Movie movie;
     public void initialize(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("name"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("genre"));
@@ -48,15 +50,27 @@ public class UserController {
 
         bookingColumn.setCellFactory(new ButtonCellFactory(editEvent -> {
             int movieId = Integer.parseInt(((Button)editEvent.getSource()).getUserData().toString());
-            bookScene(movieId);
+            try {
+                movie=movieManager.getById(movieId);
+                MyModel model = MyModel.getInstance();
+                model.setMovie(movie);
+                bookScene(movieId);
+            } catch (MovieException e) {
+                throw new RuntimeException(e);
+            }
         }));
 
         refreshMovies();
+    }
+    Movie getMovie (){
+        return movie;
     }
     public void bookScene(Integer movieId){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/book.fxml"));
             Stage stage = new Stage();
+            stage.getIcons().add(new Image("images/ticket-icon.jpg"));
+            stage.setResizable(false);
             stage.setScene(new Scene(loader.load()));
             stage.show();
             stage.setOnHiding(event -> {
