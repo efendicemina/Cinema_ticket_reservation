@@ -19,12 +19,23 @@ public class UserManager {
         }
 
     }
-
+    public User getById(Integer id) throws MovieException {
+        return DaoFactory.userDao().getById(id);
+    }
     public User update(User cat) throws MovieException{
         return DaoFactory.userDao().update(cat);
     }
 
     public List<User> getAll() throws MovieException{
         return DaoFactory.userDao().getAll();
+    }
+    public Integer checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException{
+        return DaoFactory.userDao().checkUsernamePassword(usernameTextField,passwordField);
+    }
+    public boolean isAdmin(String usernameField) throws MovieException{
+        return DaoFactory.userDao().isAdmin(usernameField);
+    }
+    public boolean findUsername(String usernameField) throws MovieException{
+        return DaoFactory.userDao().findUsername(usernameField);
     }
 }
