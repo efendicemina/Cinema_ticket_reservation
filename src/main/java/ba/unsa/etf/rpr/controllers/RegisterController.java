@@ -84,6 +84,8 @@ public class RegisterController {
                 user.setPassword(passwordField.getText());
                 user.setName(nameField.getText());
                 user.setEmail(emailField.getText());
+                MyModel model = MyModel.getInstance();
+                model.setUser(user);
                     userDaoSQL.add(user);
                     registerMessage.setText("You are registered. Click the link below.");
             }
