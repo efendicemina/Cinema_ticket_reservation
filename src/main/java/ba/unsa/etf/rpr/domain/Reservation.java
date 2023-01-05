@@ -11,7 +11,6 @@ public class Reservation implements Idable{
     private User user;
     private Movie movie;
     private String sector;
-    private int tickets;
 
     public int getId() {
         return id;
@@ -45,13 +44,7 @@ public class Reservation implements Idable{
         this.sector = sector;
     }
 
-    public int getTickets() {
-        return tickets;
-    }
 
-    public void setTickets(int tickets) {
-        this.tickets = tickets;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,6 +55,6 @@ public class Reservation implements Idable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, movie, sector, tickets);
+        return Objects.hash(id, user, movie, sector);
     }
 }
