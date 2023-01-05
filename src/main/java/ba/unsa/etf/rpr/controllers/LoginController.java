@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +29,7 @@ public class LoginController  {
     @FXML
     private TextField passwordField;
 
+    private UserManager userManager=new UserManager();
     public void CancelButtonOnAction(javafx.event.ActionEvent actionEvent) {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -37,9 +40,12 @@ public class LoginController  {
             loginMessageLabel.setText("Invalid login.");
         }
         else {
-            UserDaoSQLImpl u = new UserDaoSQLImpl();
-            if (u.checkUsernamePassword(usernameTextField.getText(),passwordField.getText())) {
-                if(u.isAdmin(usernameTextField.getText())){
+            Integer id=userManager.checkUsernamePassword(usernameTextField.getText(),passwordField.getText());
+            if (id!=null) {
+                User user = userManager.getById(id);
+                MyModel model = MyModel.getInstance();
+                model.setUser(user);
+                if(userManager.isAdmin(usernameTextField.getText())){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/admin.fxml")));
                     Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
                     Scene scene=new Scene(root);
