@@ -5,12 +5,20 @@ import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class UpdateMovieController {
     @FXML
@@ -59,9 +67,20 @@ public class UpdateMovieController {
            Movie movie = admin.createMovie(nameField.getText(), genreField.getText(), localDateTime, durationBox.getValue());
            movie.setId(idBox.getValue());
            movieManager.update(movie);
-           updateMessage.setText("Movie successfully updated.");
+           openDialog("Information", "/fxml/information.fxml");
+           Stage stage=(Stage) idBox.getScene().getWindow();
+           stage.close();
        } catch (Exception e){
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
     }
+    }
+    private void openDialog(String title,String file ) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+        Stage stage = new Stage();
+        stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setTitle(title);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+
     }
 }
