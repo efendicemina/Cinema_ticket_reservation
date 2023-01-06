@@ -50,23 +50,17 @@ public class UserController {
 
         bookingColumn.setCellFactory(new ButtonCellFactory(editEvent -> {
             int movieId = Integer.parseInt(((Button)editEvent.getSource()).getUserData().toString());
-            try {
-                movie=movieManager.getById(movieId);
-                MyModel model = MyModel.getInstance();
-                model.setMovie(movie);
                 bookScene(movieId);
-            } catch (MovieException e) {
-                throw new RuntimeException(e);
-            }
+
         }));
 
         refreshMovies();
     }
-    Movie getMovie (){
-        return movie;
-    }
     public void bookScene(Integer movieId){
         try{
+            movie=movieManager.getById(movieId);
+            MyModel model = MyModel.getInstance();
+            model.setMovie(movie);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/book.fxml"));
             Stage stage = new Stage();
             stage.getIcons().add(new Image("images/ticket-icon.jpg"));
