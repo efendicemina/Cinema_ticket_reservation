@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.UserManager;
-import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.event.ActionEvent;
@@ -36,7 +35,7 @@ public class LoginController  {
     }
 
     public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException, IOException {
-        if(usernameTextField.getText().isEmpty() && passwordField.getText().isEmpty()){
+        if(usernameTextField.getText().trim().isEmpty() && passwordField.getText().trim().isEmpty()){
             loginMessageLabel.setText("Invalid login.");
         }
         else {
@@ -46,18 +45,10 @@ public class LoginController  {
                 MyModel model = MyModel.getInstance();
                 model.setUser(user);
                 if(userManager.isAdmin(usernameTextField.getText())){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/admin.fxml")));
-                    Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
-                    Scene scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+                    openDialog(actionEvent,"/fxml/admin.fxml");
                 }
                 else {
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/user.fxml")));
-                    Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
-                    Scene scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+                    openDialog(actionEvent,"/fxml/user.fxml" );
                 }
             } else {
                 loginMessageLabel.setText("Invalid login.");
@@ -65,8 +56,11 @@ public class LoginController  {
         }
     }
     public void registerLinkOnAction(ActionEvent event)throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/register.fxml")));
-        Stage stage=(Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+       openDialog(event,"/fxml/register.fxml");
+    }
+    private void openDialog(ActionEvent actionEvent, String fxml) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        Stage stage=(Stage)((javafx.scene.Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene=new Scene(root);
         stage.setScene(scene);
         stage.show();
