@@ -16,11 +16,14 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class BookController {
     ReservationManager reservationManager=new ReservationManager();
@@ -66,8 +69,20 @@ public class BookController {
             reservation.setSector(seatBox.getValue());
             reservation.setUser(user);
             reservationManager.add(reservation);
+            openDialog("Information", "/fxml/information.fxml");
+            Stage stage=(Stage) nameLabel.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+    private void openDialog(String title,String file ) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+        Stage stage = new Stage();
+        stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setTitle(title);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+
     }
 }
