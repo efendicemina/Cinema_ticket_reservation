@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
@@ -18,6 +19,9 @@ public class UserManager {
             throw e;
         }
 
+    }
+    public User add(User u) throws MovieException{
+        return DaoFactory.userDao().add(u);
     }
     public User getById(Integer id) throws MovieException {
         return DaoFactory.userDao().getById(id);
