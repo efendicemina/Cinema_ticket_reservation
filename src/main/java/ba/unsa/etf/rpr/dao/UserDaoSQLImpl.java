@@ -14,8 +14,26 @@ import java.util.TreeMap;
  */
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
-    public UserDaoSQLImpl() {
+    private static UserDaoSQLImpl instance = null;
+    private UserDaoSQLImpl() {
         super("users");
+    }
+
+    /**
+     * @author Emina Efendic
+     * @return QuoteDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'quotes' so we will use Singleton
+     * This method will call private constructor in instance==null and then return that instance
+     */
+    public static UserDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new UserDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
@@ -62,7 +80,6 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         }
         return false;
     }
-
     @Override
     public boolean isAdmin(String usernameField) throws MovieException {
         String insert = "SELECT username from users where admin=1";
