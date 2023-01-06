@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
@@ -39,6 +40,7 @@ public class RegisterController {
     private Label usernameMessage;
     @FXML
     private Label emailMessage;
+    private UserManager userManager=new UserManager();
     public void cancelButtonOnAction(ActionEvent actionEvent) {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -62,9 +64,8 @@ public class RegisterController {
         }
         else{
             emptyMessage.setText("");
-            UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
             boolean emailOk=checkEmail(emailField.getText());
-            boolean usernameFound=userDaoSQL.findUsername(usernameField.getText());
+            boolean usernameFound=userManager.findUsername(usernameField.getText());
             if(!emailOk) {
                 emailMessage.setText("Invalid e-mail format.");
             }
@@ -86,7 +87,7 @@ public class RegisterController {
                 user.setEmail(emailField.getText());
                 MyModel model = MyModel.getInstance();
                 model.setUser(user);
-                    userDaoSQL.add(user);
+                    userManager.add(user);
                     registerMessage.setText("You are registered. Click the link below.");
             }
             else{
