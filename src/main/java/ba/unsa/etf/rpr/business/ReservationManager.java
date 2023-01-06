@@ -34,7 +34,7 @@ public class ReservationManager {
         List<String> booked=new ArrayList<>();
         List<Reservation> all=getAll();
         for(int i=0; i< all.size();i++) {
-            if(all.get(i).getId()==id)
+            if(all.get(i).getMovie().getId()==id)
             booked.add(all.get(i).getSector());
         }
         return booked;
