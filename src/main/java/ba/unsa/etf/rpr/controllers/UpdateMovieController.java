@@ -12,7 +12,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,6 +57,22 @@ public class UpdateMovieController {
         hourBox.getItems().addAll(hour);
         minBox.getItems().addAll(min);
         durationBox.getItems().addAll(duration);
+        idBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Get the selected movie's information
+            Movie movie = null;
+            try {
+                movie = movieManager.getById(newValue);
+                // Populate the text boxes and choice boxes with the movie's information
+                nameField.setText(movie.getName());
+                genreField.setText(movie.getGenre());
+                Timestamp timestamp = Timestamp.valueOf(movie.getDate_time());
+                LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
+                dateBox.setValue(localDate);
+                durationBox.setValue(movie.getDuration());
+            } catch (MovieException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
     public void updateButtonOnAction(ActionEvent actionEvent) throws MovieException {
        try {
