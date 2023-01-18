@@ -2,20 +2,36 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #add8e6;" BorderPane.alignment="CENTER">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="79.0" prefWidth="620.0" style="-fx-background-color: #add8e6;">
          <children>
-            <Label layoutX="36.0" layoutY="20.0" text="ABOUT">
+            <Label layoutX="53.0" layoutY="22.0" prefHeight="35.0" prefWidth="140.0" text="ABOUT US">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-   </top>
-</BorderPane>
+      <Text layoutX="35.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to The Silver Screen, the premier destination for movie enthusiasts in our community! We are a state-of-the-art cinema that offers the latest and greatest in film entertainment. With comfortable seating, advanced projection and sound technology, and a wide selection of food and beverages, we strive to provide our patrons with the ultimate cinematic experience." wrappingWidth="550.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="33.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our team is dedicated to delivering top-notch customer service and making sure every visit to The Silver Screen is a memorable one. We value your feedback and are always looking for ways to improve, so please don't hesitate to let us know if you have any suggestions or comments." wrappingWidth="539.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="33.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank you for choosing The Silver Screen for your movie-going needs. We can't wait to see you at the movies!" wrappingWidth="539.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
