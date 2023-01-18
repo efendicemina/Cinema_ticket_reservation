@@ -9,17 +9,24 @@ import java.util.*;
 /**
  * Abstract class that implements core DAO CRUD methods for every entity
  *
- * @author Dino Keco
+ * @author Emina Efendic
  */
 public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     private static Connection connection = null;
     private String tableName;
 
+    /**
+     * Constructor for class AbstractDao that sets connection name and calls createConnection method.
+     * @param tableName String
+     */
     public AbstractDao(String tableName) {
         this.tableName = tableName;
         if(connection==null) createConnection();
     }
 
+    /**
+     * Creates connection to database using properties file called db.properties.
+     */
     private static void createConnection(){
         if(AbstractDao.connection==null) {
             try {
@@ -46,7 +53,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
      */
 
     public static void closeConnection() {
-        System.out.println("pozvana metoda za zatvaranje konekcije");
         if(connection!=null) {
             try {
                 connection.close();
@@ -74,14 +80,30 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
      */
     public abstract Map<String, Object> object2row(T object);
 
+    /**
+     * Method that fetches object defined by the id given.
+     * @param id primary key of entity
+     * @return object that has the given id
+     * @throws MovieException in case of an error with db
+     */
     public T getById(int id) throws MovieException {
         return executeQueryUnique("SELECT * FROM "+this.tableName+" WHERE id = ?", new Object[]{id});
     }
 
+    /**
+     * Method that fetches all objects from the given table.
+     * @return List of objects
+     * @throws MovieException in case of an error with db
+     */
     public List<T> getAll() throws MovieException {
         return executeQuery("SELECT * FROM "+ tableName, null);
     }
 
+    /**
+     * Method that deletes object defined by the given id from the table.
+     * @param id - primary key of entity
+     * @throws MovieException in case of an error with db
+     */
     public void delete(int id) throws MovieException {
         String sql = "DELETE FROM "+tableName+" WHERE id = ?";
         try{
@@ -93,6 +115,12 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    /**
+     * Method that adds given object to a table.
+     * @param item bean for saving to database
+     * @return item bean
+     * @throws MovieException in case of an error with db
+     */
     public T add(T item) throws MovieException{
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
@@ -123,6 +151,12 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    /**
+     * Method that updates object defined by the given id.
+     * @param item - bean to be updated. id must be populated
+     * @return item bean
+     * @throws MovieException in case of an error with db
+     */
     public T update(T item) throws MovieException{
         Map<String, Object> row = object2row(item);
         String updateColumns = prepareUpdateParts(row);
