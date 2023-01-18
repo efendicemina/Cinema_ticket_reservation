@@ -5,26 +5,27 @@ import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * Controller for booking tickets.
+ * It allows users to choose ticket they want and to book it very easily.
+ * @author Emina Efendic
+ */
 public class BookController {
     ReservationManager reservationManager=new ReservationManager();
     @FXML
@@ -35,10 +36,14 @@ public class BookController {
     private Label genreLabel;
     @FXML
     private Label durationLabel;
-    private String[] seats={"A1","A2","A3","A4","A5","A6","A7","A8","A9","A10"
+    private final String[] seats={"A1","A2","A3","A4","A5","A6","A7","A8","A9","A10"
     ,"B1","B2","B3","B4","B5","B6","B7","B8","B9","B10"
             ,"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10"
     ,"D1","D2","D3","D4","D5","D6","D7","D8","D9","D10"};
+
+    /**
+     * Initializes the MyModel class and ChoiceBox where all available seats are displayed.
+     */
     @FXML
     public void initialize() throws MovieException {
         MyModel model = MyModel.getInstance();
@@ -47,18 +52,25 @@ public class BookController {
         genreLabel.setText(movie.getGenre());
         durationLabel.setText(movie.getDuration().toString());
      List<String> booked= reservationManager.getBookedSeats(movie.getId());
-     List<String> avalible=new ArrayList<>();
-     for(int i=0; i< seats.length; i++){
-         if(!booked.contains(seats[i])) avalible.add(seats[i]);
-     }
-     seatBox.getItems().addAll(avalible);
+     List<String> available=new ArrayList<>();
+        for (String seat : seats) {
+            if (!booked.contains(seat)) available.add(seat);
+        }
+     seatBox.getItems().addAll(available);
     }
-    public void cancelButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    /**
+     * Action defined for cancel button. It takes you back to user panel.
+     */
+    public void cancelButtonOnAction() {
         Stage stage=(Stage) seatBox.getScene().getWindow();
         stage.close();
     }
-
-    public void bookingButtonOnAction(ActionEvent actionEvent) throws MovieException {
+    /**
+     * Action defined for book button.
+     * It checks if the reservation can be made, if so it adds the reservation to database.
+     * On the other hand if the reservation cannot be made it displays an alert.
+     */
+    public void bookingButtonOnAction() {
         try {
             reservationManager.validateSeatField(seatBox.getValue());
             Reservation reservation = new Reservation();
@@ -69,18 +81,22 @@ public class BookController {
             reservation.setSector(seatBox.getValue());
             reservation.setUser(user);
             reservationManager.add(reservation);
-            openDialog("Information", "/fxml/information.fxml");
+            openDialog();
             Stage stage=(Stage) nameLabel.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    private void openDialog(String title,String file ) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+    /**
+     * Opens dialogs if possible, if not it displays an alert.
+     *
+     */
+    private void openDialog() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/information.fxml"));
         Stage stage = new Stage();
-        stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle(title);
+        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setTitle("Information");
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
 
