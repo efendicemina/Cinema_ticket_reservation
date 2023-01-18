@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="74.0" prefWidth="600.0" style="-fx-background-color: #add8e6;" BorderPane.alignment="CENTER">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: #add8e6;">
          <children>
-            <Label layoutX="20.0" layoutY="17.0" prefHeight="40.0" prefWidth="302.0" text="ABOUT">
+            <Text layoutX="35.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT ADMIN PANEL">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
-            </Label>
+            </Text>
          </children>
       </AnchorPane>
-   </top>
-   <center>
-      <ImageView fitHeight="254.0" fitWidth="591.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../images/admin_about.png" />
-         </image>
-      </ImageView>
-   </center>
-</BorderPane>
+      <Text layoutX="39.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Silver Screen admin panel is a secure and user-friendly interface that allows authorized users to view and manage movie reservations and user information for The Silver Screen cinema." wrappingWidth="500.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="39.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From the main dashboard, admins can view a list of current and upcoming movies, as well as the number of reservations for each film. Admins can also view a list of users and their reservation details, including the movie, showtime..." wrappingWidth="500.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="39.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The admin panel includes several buttons for managing movies and user information. Admins can use the &quot;Add Movie&quot; button to add new films to the cinema's lineup, the &quot;Delete Movie&quot; button to remove films from the schedule, and the &quot;Update Movie&quot; button to make changes to existing movies. Admins can also use the &quot;Logout&quot; button to securely log out of the panel when they are finished.Overall, the Silver Screen admin panel provides a convenient and efficient way for authorized users to manage movie reservations and user information for The Silver Screen cinema." wrappingWidth="500.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
