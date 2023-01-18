@@ -69,6 +69,9 @@ public class UpdateMovieController {
                 LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
                 dateBox.setValue(localDate);
                 durationBox.setValue(movie.getDuration());
+                hourBox.setValue(timestamp.toLocalDateTime().getHour());
+                minBox.setValue(timestamp.toLocalDateTime().getMinute());
+
             } catch (MovieException e) {
                 throw new RuntimeException(e);
             }
