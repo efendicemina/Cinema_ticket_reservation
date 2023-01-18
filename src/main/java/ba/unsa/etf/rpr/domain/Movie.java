@@ -1,13 +1,10 @@
 package ba.unsa.etf.rpr.domain;
 
-import java.text.SimpleDateFormat;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * Class that contains information about movie tickets available for purchase.
+ * Class that contains information about movie tickets available for booking.
  * @author Emina Efendic
  */
 public class Movie implements Idable{
