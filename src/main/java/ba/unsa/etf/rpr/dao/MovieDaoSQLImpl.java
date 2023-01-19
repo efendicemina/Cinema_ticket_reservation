@@ -4,7 +4,6 @@ import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.exception.MovieException;
 
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,6 +14,10 @@ import java.util.TreeMap;
 public class MovieDaoSQLImpl extends AbstractDao<Movie> implements MovieDao {
 
     private static MovieDaoSQLImpl instance = null;
+    /**
+     * Private constructor for the MovieDaoSQLImpl class.
+     * This constructor initializes the parent class  with the table name.
+     */
     private MovieDaoSQLImpl() {
         super("movies");
     }
@@ -31,11 +34,19 @@ public class MovieDaoSQLImpl extends AbstractDao<Movie> implements MovieDao {
         return instance;
     }
 
+    /**
+     * Removes the singleton instance of the MovieDaoSQLImpl class.
+     */
     public static void removeInstance(){
         if(instance!=null)
             instance=null;
     }
-
+    /**
+     *Maps a row from the result set to a Movie object
+     *@param rs The result set from the database query
+     *@return A Movie object with properties set according to the values in the result set
+     *@throws MovieException if there is an error when retrieving values from the result set
+     */
     @Override
     public Movie row2object(ResultSet rs) throws MovieException{
         try {

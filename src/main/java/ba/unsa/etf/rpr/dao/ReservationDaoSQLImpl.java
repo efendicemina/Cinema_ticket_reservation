@@ -1,15 +1,20 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.exception.MovieException;
-
-import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
-
+/**
+ * MySQL's implementation of the DAO
+ * @author Emina Efendic
+ */
 public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements ReservationDao{
 
     private static ReservationDaoSQLImpl instance = null;
+
+    /**
+     * Private constructor for the ReservationDaoSQLImpl class.
+     * This constructor initializes the parent class  with the table name.
+     */
     private ReservationDaoSQLImpl() {
         super("reservations");
     }
@@ -25,13 +30,20 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
             instance = new ReservationDaoSQLImpl();
         return instance;
     }
-
+    /**
+     * Removes the singleton instance of the ReservationDaoSQLImpl class.
+     */
     public static void removeInstance(){
         if(instance!=null)
             instance=null;
     }
 
-
+    /**
+     *Maps a row from the result set to a Movie object
+     *@param rs The result set from the database query
+     *@return A Movie object with properties set according to the values in the result set
+     *@throws MovieException if there is an error when retrieving values from the result set
+     */
     @Override
     public Reservation row2object(ResultSet rs) throws MovieException {
         try {
@@ -45,7 +57,10 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
             throw new MovieException(e.getMessage(), e);
         }
     }
-
+    /**
+     * @param object - object to be mapped
+     * @return map representation of object
+     */
     @Override
     public Map<String, Object> object2row(Reservation object) {
         Map<String, Object> item = new TreeMap<String, Object>();
