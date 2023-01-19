@@ -4,7 +4,7 @@ import ba.unsa.etf.rpr.exception.MovieException;
 import java.sql.*;
 import java.util.*;
 /**
- * MySQL's implementation of the DAO
+ * MySQL Implementation of the DAO
  * @author Emina Efendic
  */
 public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements ReservationDao{
