@@ -35,7 +35,7 @@
             <Button layoutX="34.0" layoutY="311.0" mnemonicParsing="false" onAction="#addMovieOnAction" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #9ACD32;" text="Add Movie" />
             <Button layoutX="34.0" layoutY="362.0" mnemonicParsing="false" onAction="#deleteMovieOnAction" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #FFB6C1;" text="Delete Movie" />
             <Button layoutX="33.0" layoutY="414.0" mnemonicParsing="false" onAction="#updateMovieOnAction" prefHeight="36.0" prefWidth="149.0" text="Update Movie" />
-            <Button layoutY="-1.0" mnemonicParsing="false" onAction="#aboutOnAction" style="-fx-background-color: transperent; -fx-border-color: transparent;" text="ABOUT">
+            <Button layoutY="-1.0" mnemonicParsing="false" onAction="#aboutOnAction" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="ABOUT">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -48,7 +48,7 @@
         <tabs>
           <Tab text="Movies">
                <content>
-                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-opacity: 0.8; -fx-text-fill: white;">
+                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn fx:id="midColumn" prefWidth="34.0" text="ID" />
                       <TableColumn fx:id="mnameColumn" prefWidth="152.0" text="NAME" />
@@ -61,7 +61,7 @@
             </Tab>
           <Tab text="Users">
                <content>
-                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-opacity: 0.8; -fx-text-fill: white;">
+                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0" style=": ;">
                     <columns>
                       <TableColumn fx:id="uidColumn" prefWidth="42.0" text="ID" />
                       <TableColumn fx:id="unameColumn" prefWidth="124.0" text="NAME" />
@@ -74,7 +74,7 @@
             </Tab>
             <Tab text="Reservations">
                <content>
-                  <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('file:/C:/Users/User-PC/IdeaProjects/projekat1/src/main/resources/images/abstractBackground.jpg'); -fx-text-fill: white; -fx-opacity: 0.8;">
+                  <TableView fx:id="reservationTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn fx:id="ridColumn" prefWidth="84.0" text="ID" />
                       <TableColumn fx:id="user_idColumn" prefWidth="142.0" text="USERNAME" />
