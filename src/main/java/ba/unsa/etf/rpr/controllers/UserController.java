@@ -136,12 +136,12 @@ public class UserController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
-            stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setTitle(title);
-            stage.initStyle(StageStyle.UTILITY);
+            stage.getIcons().add(new Image("images/ticket-icon.jpg"));
+            stage.setResizable(false);
+            stage.setScene(new Scene(loader.load()));
             stage.show();
             stage.setOnHiding(event -> {
-                ((Stage) userScreen.getScene().getWindow()).show();
+                ((Stage)userScreen.getScene().getWindow()).show();
                 refreshMovies();
             });
         } catch (Exception e) {
