@@ -17,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -183,12 +184,12 @@ public class AdminController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setTitle(title);
-            stage.initStyle(StageStyle.UTILITY);
+            stage.getIcons().add(new Image("images/ticket-icon.jpg"));
+            stage.setResizable(false);
+            stage.setScene(new Scene(loader.load()));
             stage.show();
             stage.setOnHiding(event -> {
-                ((Stage) adminPane.getScene().getWindow()).show();
+                ((Stage)adminPane.getScene().getWindow()).show();
                 refreshMovies();
             });
         } catch (Exception e) {
