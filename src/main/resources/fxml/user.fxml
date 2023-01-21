@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -56,14 +58,26 @@
      
    </top>
    <center>
-      <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="120.0" text="NAME" />
-          <TableColumn fx:id="genreColumn" prefWidth="119.0" text="GENRE" />
-            <TableColumn fx:id="dateColumn" prefWidth="121.0" text="DATE AND TIME" />
-            <TableColumn fx:id="durationColumn" prefWidth="102.0" text="DURATION" />
-            <TableColumn fx:id="bookingColumn" prefWidth="88.0" text="BOOKING" />
-        </columns>
-      </TableView>
+      <TabPane prefHeight="114.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Movies">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="movieTable" layoutY="-1.0" prefHeight="583.0" prefWidth="553.0">
+                          <columns>
+                            <TableColumn fx:id="nameColumn" prefWidth="120.0" text="NAME" />
+                            <TableColumn fx:id="genreColumn" prefWidth="119.0" text="GENRE" />
+                              <TableColumn fx:id="dateColumn" prefWidth="121.0" text="DATE AND TIME" />
+                              <TableColumn fx:id="durationColumn" prefWidth="102.0" text="DURATION" />
+                              <TableColumn fx:id="bookingColumn" prefWidth="88.0" text="BOOKING" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </center>
 </BorderPane>
