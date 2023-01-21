@@ -28,12 +28,12 @@
          <children>
             <TextField fx:id="usernameTextField" layoutX="24.0" layoutY="157.0" prefHeight="26.0" prefWidth="211.0" promptText="Username" style="-fx-border-color: #fad7d4; -fx-background-color: transparent;" />
             <PasswordField fx:id="passwordField" layoutX="23.0" layoutY="193.0" prefHeight="26.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #fad7d4;" />
-            <Button fx:id="loginButton" ellipsisString="" layoutX="18.0" layoutY="262.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="32.0" prefWidth="223.0" style="-fx-background-color: #f4c2c2;" text="Login">
+            <Button fx:id="loginButton" ellipsisString="" layoutX="14.0" layoutY="263.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="32.0" prefWidth="223.0" style="-fx-background-color: #f4c2c2;" text="Login">
                <font>
                   <Font name="Microsoft Tai Le" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="cancelButton" layoutX="18.0" layoutY="305.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="32.0" prefWidth="224.0" style="-fx-background-color: #d3d3d3;" text="Cancel">
+            <Button fx:id="cancelButton" layoutX="13.0" layoutY="305.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="32.0" prefWidth="224.0" style="-fx-background-color: #d3d3d3;" text="Cancel">
                <font>
                   <Font name="Microsoft New Tai Lue" size="13.0" />
                </font>
@@ -44,7 +44,7 @@
                </font>
             </Label>
             <Hyperlink layoutX="117.0" layoutY="337.0" />
-            <Hyperlink fx:id="registerLink" layoutX="34.0" layoutY="349.0" onAction="#registerLinkOnAction" text="Don't have an account? Sign up!" />
+            <Hyperlink fx:id="registerLink" layoutX="27.0" layoutY="349.0" onAction="#registerLinkOnAction" text="Don't have an account? Sign up!" />
             <ImageView fitHeight="153.0" fitWidth="166.0" layoutX="56.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/signIn.jpg" />
