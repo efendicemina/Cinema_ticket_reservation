@@ -21,7 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
+/**
+ *UpdateMovieController class is responsible for updating existing movies.
+ *It provides functionality for updating existing movie object by providing its id, name, genre, date and time of showing, and duration of the movie.
+ *@author Emina Efendic
+ */
 public class UpdateMovieController {
     @FXML
     private ChoiceBox<Integer> idBox;
@@ -46,8 +50,15 @@ public class UpdateMovieController {
     private Integer[] hour = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
     private Integer[] min = {00, 10, 20, 30, 40, 50};
     private Integer[] duration = {60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220};
+    /**
+     *The initialize method is called when the controller is created.
+     *It sets up the UI elements such as populating the choice boxes with data and adding listeners to certain elements.
+     *Specifically it populates the movie id choice box with all available movie ids and when user select a movie id, it shows the details of that movie
+     *@throws MovieException when there is any problem with getting the list of movies from the system.
+     */
     @FXML
     public void initialize() throws MovieException {
+        dateBox.setEditable(false);
         List<Movie> list=movieManager.getAll();
         for(int i=0; i< list.size(); i++){
             Movie movie= list.get(i);
@@ -77,6 +88,14 @@ public class UpdateMovieController {
             }
         });
     }
+    /**
+     *The updateButtonOnAction method updates a movie with new information.
+     *It first validates the input fields, creates a new movie object with the new information,
+     *sets its id to the selected id, and updates the movie in the system.
+     *If there is any problem with the input fields or updating the movie, an error message will be shown.
+     *@param actionEvent The event that triggered the method call.
+     *@throws MovieException when there is any problem with updating the movie in the system.
+     */
     public void updateButtonOnAction(ActionEvent actionEvent) throws MovieException {
        try {
            movieManager.validateAddFields(nameField.getText(), genreField.getText(),
@@ -95,6 +114,12 @@ public class UpdateMovieController {
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
     }
     }
+    /**
+     *The openDialog method opens a new window with the given title and FXML file.
+     *@param title The title of the new window.
+     *@param file The filepath of the FXML file to be loaded in the new window.
+     *@throws IOException when there is a problem with loading the FXML file.
+     */
     private void openDialog(String title,String file ) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
         Stage stage = new Stage();

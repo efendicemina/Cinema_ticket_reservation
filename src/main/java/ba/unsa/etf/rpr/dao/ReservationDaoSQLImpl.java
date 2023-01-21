@@ -21,8 +21,8 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
 
     /**
      * @author Emina Efendic
-     * @return QuoteDaoSQLImpl
-     * We don't need more than one object for CRUD operations on table 'quotes' so we will use Singleton
+     * @return ReservationDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'reservations' so we will use Singleton
      * This method will call private constructor in instance==null and then return that instance
      */
     public static ReservationDaoSQLImpl getInstance(){
@@ -39,9 +39,9 @@ public class ReservationDaoSQLImpl extends AbstractDao<Reservation> implements R
     }
 
     /**
-     *Maps a row from the result set to a Movie object
+     *Maps a row from the result set to a Reservation object
      *@param rs The result set from the database query
-     *@return A Movie object with properties set according to the values in the result set
+     *@return A Reservation object with properties set according to the values in the result set
      *@throws MovieException if there is an error when retrieving values from the result set
      */
     @Override

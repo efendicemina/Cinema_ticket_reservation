@@ -32,8 +32,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 /**
  *
  *AdminController class is responsible for managing movies, users and reservations.
- *It provides functionality for creating, updating and deleting movies.
- *It also displays current movies, users, and reservations in the tables.
+ *It displays current movies, users, and reservations in the tables.
  *@author Emina Efendic
  */
 public class AdminController {
@@ -79,7 +78,6 @@ public class AdminController {
     @FXML
     public TableColumn<Reservation, String> sectorColumn;
     /**
-
      *Initializes the movieTable, userTable, and reservationTable with values from database for movies, users, and reservations.
      *It also sets the cell value factories for each column in the tables to display the appropriate values.
      */
@@ -150,7 +148,6 @@ public class AdminController {
         stage.show();
     }
     /**
-
      *Opens add movie dialog window
      */
     public void addMovieOnAction() {
@@ -158,14 +155,12 @@ public class AdminController {
 
     }
     /**
-
      *Opens delete movie dialog window
      */
     public void deleteMovieOnAction() {
         openDialog("Delete movie", "/fxml/movie_delete.fxml");
     }
     /**
-
      *Opens update movie dialog window
      */
 
@@ -174,7 +169,6 @@ public class AdminController {
     }
 
     /**
-
      *Opens about window
      */
     public void aboutOnAction() {
@@ -202,7 +196,6 @@ public class AdminController {
         }
     }
     /**
-
      *Creates a new movie object using provided name, genre, date and time, and duration.
      *@param name String
      *@param genre String

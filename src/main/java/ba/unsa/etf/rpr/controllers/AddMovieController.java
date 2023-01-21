@@ -16,11 +16,9 @@ import java.time.LocalDateTime;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 /**
- *
- AddMovieController class is responsible for adding new movies to the system.
- It provides functionality for creating new movie object by providing its name, genre, date and time of showing, and duration of the movie.
- It also performs validation of user input and displays error messages in case of invalid input.
- @author Emina Efendic
+ *AddMovieController class is responsible for adding new movies to the system.
+ *It provides functionality for creating new movie object by providing its name, genre, date and time of showing, and duration of the movie.
+ *@author Emina Efendic
  */
 public class AddMovieController {
 
@@ -75,7 +73,7 @@ public class AddMovieController {
         }
     }
     /**
-     * Opens a dialog window with the provided title and FXML file path
+     * Opens a dialog window if possible.
      */
     private void openDialog() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/information.fxml"));

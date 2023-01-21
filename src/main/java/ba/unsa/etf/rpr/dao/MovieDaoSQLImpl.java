@@ -24,8 +24,8 @@ public class MovieDaoSQLImpl extends AbstractDao<Movie> implements MovieDao {
 
     /**
      * @author Emina Efendic
-     * @return QuoteDaoSQLImpl
-     * We don't need more than one object for CRUD operations on table 'quotes' so we will use Singleton
+     * @return MovieDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'movies' so we will use Singleton
      * This method will call private constructor in instance==null and then return that instance
      */
     public static MovieDaoSQLImpl getInstance(){

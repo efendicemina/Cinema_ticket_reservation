@@ -17,6 +17,11 @@ import javafx.event.ActionEvent;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+/**
+ *RegisterController class is responsible for verifying and registering in users.
+ *It provides functionality for register with provided all needed information.
+ *@author Emina Efendic
+ */
 public class RegisterController {
     @FXML
     private Button cancelButton;
@@ -41,10 +46,20 @@ public class RegisterController {
     @FXML
     private Label emailMessage;
     private UserManager userManager=new UserManager();
+    /**
+     * Retrieves the stage of the current window and call the close() method to close it.
+     * @param actionEvent actionEvent
+     */
     public void cancelButtonOnAction(ActionEvent actionEvent) {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+/**
+ *The checkEmail method checks if a given string is a valid email address.
+ *The method uses a regular expression to validate the email address.
+ *@param emailField The string to be checked if it is a valid email address.
+ *@return Returns true if the given string is a valid email address, false otherwise.
+ */
     public boolean checkEmail(String emailField){
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
@@ -55,6 +70,13 @@ public class RegisterController {
         Matcher matcher = pattern.matcher(emailField);
         return matcher.matches();
     }
+    /**
+     *The registerButtonOnAction method is called when the register button is pressed.
+     *It validates the input fields and if they are all filled and valid, it creates a new User object and adds it to the system.
+     *If any of the fields are empty or the email address is not in valid format or the username is already taken, it shows an error message.
+     *@param actionEvent The event that triggered the method call.
+     *@throws MovieException when there is any problem with the registration process.
+     */
     public void registerButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException {
         if (usernameField.getText().isEmpty()  || passwordField.getText().isEmpty()  || emailField.getText().isEmpty() ||
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
@@ -95,6 +117,11 @@ public class RegisterController {
             }
         }
     }
+    /**
+     * Switches window allowing users to log in with their account.
+     * @param event ActionEvent
+     * @throws Exception in case of problems with switching windows.
+     */
     public void loginLinkOnAction(ActionEvent event)throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
         Stage stage=(Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();

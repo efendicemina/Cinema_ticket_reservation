@@ -81,7 +81,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public abstract Map<String, Object> object2row(T object);
 
     /**
-     * Method that fetches object defined by the id given.
+     * Fetches object defined by the id given.
      * @param id primary key of entity
      * @return object that has the given id
      * @throws MovieException in case of an error with db
@@ -91,7 +91,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     /**
-     * Method that fetches all objects from the given table.
+     * Fetches all objects from the given table.
      * @return List of objects
      * @throws MovieException in case of an error with db
      */
@@ -100,7 +100,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     /**
-     * Method that deletes object defined by the given id from the table.
+     * Deletes object defined by the given id from the table.
      * @param id - primary key of entity
      * @throws MovieException in case of an error with db
      */
@@ -116,7 +116,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     /**
-     * Method that adds given object to a table.
+     * Adds given object to a table.
      * @param item bean for saving to database
      * @return item bean
      * @throws MovieException in case of an error with db
@@ -152,7 +152,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     /**
-     * Method that updates object defined by the given id.
+     * Updates object defined by the given id.
      * @param item - bean to be updated. id must be populated
      * @return item bean
      * @throws MovieException in case of an error with db

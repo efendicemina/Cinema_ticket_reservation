@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
  * Custom component for rendering table cell with one button (BOOK)
  *
  * @param <T> - Bean class represented in the table cells
+ * @author Emina Efendic
  */
 public class ButtonTableCell<T> extends TableCell<T, T> {
 

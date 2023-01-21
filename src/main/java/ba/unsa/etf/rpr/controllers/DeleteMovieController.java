@@ -21,7 +21,11 @@ import java.util.List;
 import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
+/**
+ *DeleteMovieController class is responsible for deleting movies.
+ *It provides functionality for deleting movie for provided id.
+ *@author Emina Efendic
+ */
 public class DeleteMovieController {
     @FXML
     private ChoiceBox<Integer> idBox;
@@ -29,6 +33,11 @@ public class DeleteMovieController {
     private Label deleteMessage;
     private List<Integer> ids=new ArrayList<Integer>() ;
     private MovieManager movieManager=new MovieManager();
+
+    /**
+     * Initializes ChoiceBox with ids of all movies currently in database.
+     * @throws MovieException in case of problem with db
+     */
     @FXML
    public void initialize() throws MovieException {
         List<Movie> list=movieManager.getAll();
@@ -38,7 +47,10 @@ public class DeleteMovieController {
         }
        idBox.getItems().addAll(ids);
     }
-
+    /**
+     * Handles the 'Delete' button click event, deletes selected movie and displays a confirmation dialog.
+     * In case of invalid input, it displays an error message.
+     */
     public void deleteButtonOnAction(ActionEvent actionEvent) throws MovieException {
         try {
             movieManager.validateDeleteFields(idBox.getValue());
@@ -50,6 +62,9 @@ public class DeleteMovieController {
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
     }
     }
+    /**
+     * Opens a dialog window with the provided title and FXML file path
+     */
     private void openDialog(String title,String file ) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
         Stage stage = new Stage();

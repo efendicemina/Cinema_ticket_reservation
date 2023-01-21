@@ -90,7 +90,6 @@ public class BookController {
     }
     /**
      * Opens dialogs if possible, if not it displays an alert.
-     *
      */
     private void openDialog() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/information.fxml"));

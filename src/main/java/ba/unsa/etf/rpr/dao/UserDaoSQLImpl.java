@@ -40,9 +40,9 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
             instance=null;
     }
     /**
-     *Maps a row from the result set to a Movie object
+     *Maps a row from the result set to a User object
      *@param rs The result set from the database query
-     *@return A Movie object with properties set according to the values in the result set
+     *@return A User object with properties set according to the values in the result set
      *@throws MovieException if there is an error when retrieving values from the result set
      */
     @Override
