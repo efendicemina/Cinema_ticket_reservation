@@ -1,34 +1,42 @@
 package ba.unsa.etf.rpr;
-import ba.unsa.etf.rpr.dao.AbstractDao;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.stage.StageStyle;
 
-import java.util.Objects;
+
+import ba.unsa.etf.rpr.business.MovieManager;
+import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.Movie;
+import org.apache.commons.cli.*;
+
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.*;
 
 /**
- * class that extends Application
+ * @author Adnan
+ * CLI (Command Line Interface) implementation in following class
+ * Even though this type of presentation layer (called CLI) is becoming past tense for GUI apps
+ * it's good to see how you can manipulate data through command line and database also
  *
  */
-public class App extends Application
-{
-    public static void main( String[] args )
-    {
-        Application.launch(args);
-        AbstractDao.closeConnection();
+public class App {
 
+
+    public static void main(String[] args) throws Exception {
+        CommandLineParser commandLineParser = new DefaultParser();
+/*
+       CommandLineParser commandLineParser = new CommandLineParser() {
+           @Override
+           public CommandLine parse(Options options, String[] strings) throws ParseException {
+               return null;
+           }
+
+           @Override
+           public CommandLine parse(Options options, String[] strings, boolean b) throws ParseException {
+               return null;
+           }
+       };
+
+
+ */
+        }
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
-        primaryStage.getIcons().add(new Image("images/ticket-icon.jpg"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    }
-}
