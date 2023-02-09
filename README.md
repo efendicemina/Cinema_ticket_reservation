@@ -32,7 +32,8 @@ A JavaFX application, created with Maven, for reserving movie tickets. It is a f
 
 ## Screenshots
 ### Login window
-![](C:\Users\User-PC\Pictures\Camera Roll\Screenshots\Screenshot (428).png)
+![Alt Text](./src/main/resources/screenshots/login.png)
+
 
 ## Author
 - Emina Efendic
