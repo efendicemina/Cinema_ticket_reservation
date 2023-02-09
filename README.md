@@ -34,6 +34,32 @@ A JavaFX application, created with Maven, for reserving movie tickets. It is a f
 ### Login window
 ![Alt Text](./src/main/resources/screenshots/login.png)
 
+### Registration window
+![Alt Text](./src/main/resources/screenshots/registration.png)
+
+### Admin panel
+![Alt Text](./src/main/resources/screenshots/admin.png)
+
+### Add movie window
+![Alt Text](./src/main/resources/screenshots/add.png)
+
+### Update movie window
+![Alt Text](./src/main/resources/screenshots/update.png)
+
+### Delete movie window
+![Alt Text](./src/main/resources/screenshots/delete.png)
+
+### About admin panel window
+![Alt Text](./src/main/resources/screenshots/about_admin.png)
+
+### User panel window
+![Alt Text](./src/main/resources/screenshots/user.png)
+
+### Booking ticket window
+![Alt Text](./src/main/resources/screenshots/booking.png)
+
+### About The Silver Screen
+![Alt Text](./src/main/resources/screenshots/about_user.png)
 
 ## Author
 - Emina Efendic
