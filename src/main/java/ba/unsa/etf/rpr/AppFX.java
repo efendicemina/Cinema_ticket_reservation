@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 import ba.unsa.etf.rpr.dao.AbstractDao;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ public class AppFX extends Application
     {
         Application.launch(args);
         AbstractDao.closeConnection();
+        Platform.exit();
 
     }
 

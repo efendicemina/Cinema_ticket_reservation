@@ -47,6 +47,7 @@
                <image>
                   <Image url="@../images/popcorn.png" />
                </image></ImageView>
+            <Label fx:id="soldOut" layoutX="69.0" layoutY="315.0" prefHeight="20.0" prefWidth="69.0" textFill="#bc0d0d" />
          </children></AnchorPane>
       <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="232.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
          <image>

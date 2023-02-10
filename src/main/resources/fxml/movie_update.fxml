@@ -34,6 +34,6 @@
       <Label layoutX="35.0" layoutY="299.0" text="Duration" />
       <ChoiceBox fx:id="durationBox" layoutX="97.0" layoutY="295.0" prefWidth="150.0" />
       <Label fx:id="updateMessage" layoutX="35.0" layoutY="335.0" prefHeight="17.0" prefWidth="192.0" textFill="#138317" />
-      <Button layoutX="284.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="35.0" prefWidth="71.0" text="Update" />
+      <Button layoutX="281.0" layoutY="318.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="35.0" prefWidth="71.0" text="Update" />
    </children>
 </Pane>

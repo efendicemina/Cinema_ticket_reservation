@@ -31,9 +31,9 @@ public class App {
 
 
     /**
+     * Prints the usage and options of the program in a formatted way.
      *
-     * @param options
-     *
+     * @param options the options that are available for use in the program
      */
     public static void printFormattedOptions(Options options) {
         HelpFormatter helpFormatter = new HelpFormatter();
@@ -42,7 +42,11 @@ public class App {
         helpFormatter.printOptions(printWriter, 150, options, 2, 7);
         printWriter.close();
     }
-
+    /**
+     * Adds all available options for the program.
+     *
+     * @return the options that are available for use in the program
+     */
     public static Options addOptions() {
         Options options = new Options();
         options.addOption(addMovie);
@@ -53,19 +57,15 @@ public class App {
         options.addOption(getUsers);
         return options;
     }
-
-
-
-
     /**
-     *
+     * Main method of CLI
      * @param args
      * @throws Exception
      */
 
     public static void main(String[] args) throws Exception {
         Options options = addOptions();
-
+        printFormattedOptions(options);
         CommandLineParser commandLineParser = new DefaultParser();
 
         CommandLine cl = commandLineParser.parse(options, args);

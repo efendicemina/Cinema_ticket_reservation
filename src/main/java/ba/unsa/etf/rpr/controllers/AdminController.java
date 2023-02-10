@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -142,11 +145,13 @@ public class AdminController {
      * @param mouseEvent MouseEvent
      */
     public void logoutOnAction(MouseEvent mouseEvent) throws IOException {
+        closeAllDialogs();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
         Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
     /**
      *Opens add movie dialog window
@@ -180,6 +185,8 @@ public class AdminController {
      *@param title String
      *@param file String
      */
+    private List<Stage> dialogStages = new ArrayList<>();
+
     private void openDialog(String title, String file) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
@@ -188,14 +195,25 @@ public class AdminController {
             stage.setResizable(false);
             stage.setScene(new Scene(loader.load()));
             stage.show();
+            dialogStages.add(stage);
             stage.setOnHiding(event -> {
                 ((Stage)adminPane.getScene().getWindow()).show();
                 refreshMovies();
             });
+
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
+    private void closeAllDialogs() {
+        for (Stage stage : dialogStages) {
+            stage.close();
+        }
+    }
+
+
+
     /**
      *Creates a new movie object using provided name, genre, date and time, and duration.
      *@param name String

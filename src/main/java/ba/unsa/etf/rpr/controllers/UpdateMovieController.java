@@ -97,22 +97,22 @@ public class UpdateMovieController {
      *@throws MovieException when there is any problem with updating the movie in the system.
      */
     public void updateButtonOnAction(ActionEvent actionEvent) throws MovieException {
-       try {
-           movieManager.validateAddFields(nameField.getText(), genreField.getText(),
-                   dateBox.toString(), hourBox.getValue(), minBox.getValue(), durationBox.getValue());
-           movieManager.validateDeleteFields(idBox.getValue());
-           AdminController admin = new AdminController();
-           LocalDate localDate = dateBox.getValue();
-           LocalDateTime localDateTime = localDate.atTime(hourBox.getValue(), minBox.getValue());
-           Movie movie = admin.createMovie(nameField.getText(), genreField.getText(), localDateTime, durationBox.getValue());
-           movie.setId(idBox.getValue());
-           movieManager.update(movie);
-           openDialog("Information", "/fxml/information.fxml");
-           Stage stage=(Stage) idBox.getScene().getWindow();
-           stage.close();
-       } catch (Exception e){
-        new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-    }
+        try {
+            movieManager.validateAddFields(nameField.getText(), genreField.getText(),
+                    dateBox.toString(), hourBox.getValue(), minBox.getValue(), durationBox.getValue());
+            movieManager.validateDeleteFields(idBox.getValue());
+            AdminController admin = new AdminController();
+            LocalDate localDate = dateBox.getValue();
+            LocalDateTime localDateTime = localDate.atTime(hourBox.getValue(), minBox.getValue());
+            Movie movie = admin.createMovie(nameField.getText(), genreField.getText(), localDateTime, durationBox.getValue());
+            movie.setId(idBox.getValue());
+            movieManager.update(movie);
+            openDialog("Information", "/fxml/information.fxml");
+            Stage stage=(Stage) idBox.getScene().getWindow();
+            stage.close();
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
     /**
      *The openDialog method opens a new window with the given title and FXML file.

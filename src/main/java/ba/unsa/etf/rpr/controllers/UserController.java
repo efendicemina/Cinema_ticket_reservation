@@ -16,13 +16,15 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 
 /**
  * The UserController class is responsible for the user interface of the application
@@ -47,6 +49,7 @@ public class UserController {
     public TableColumn<Movie, Integer> durationColumn;
     @FXML
     public TableColumn<Movie, Integer> bookingColumn;
+    private List<Stage> dialogStages = new ArrayList<>();
     private Movie movie;
     /**
      *It sets up the UI elements such as the movie table, populating the table with data, setting cell value factories and creating button cell factory.
@@ -61,8 +64,13 @@ public class UserController {
         bookingColumn.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("id"));
 
         bookingColumn.setCellFactory(new ButtonCellFactory(editEvent -> {
-            int movieId = Integer.parseInt(((Button)editEvent.getSource()).getUserData().toString());
+            try {
+                int movieId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
                 bookScene(movieId);
+            }
+            catch(Exception e){
+
+            }
 
         }));
 
@@ -112,6 +120,7 @@ public class UserController {
      *@throws IOException if there is a problem with loading the fxml file
      */
     public void logoutOnAction(MouseEvent mouseEvent) throws IOException {
+        closeAllDialogs();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login.fxml")));
         Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -140,12 +149,18 @@ public class UserController {
             stage.setResizable(false);
             stage.setScene(new Scene(loader.load()));
             stage.show();
+            dialogStages.add(stage);
             stage.setOnHiding(event -> {
                 ((Stage)userScreen.getScene().getWindow()).show();
                 refreshMovies();
             });
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+    private void closeAllDialogs() {
+        for (Stage stage : dialogStages) {
+            stage.close();
         }
     }
 }
