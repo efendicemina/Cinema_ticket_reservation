@@ -55,23 +55,11 @@ public class DeleteMovieController {
         try {
             movieManager.validateDeleteFields(idBox.getValue());
             movieManager.delete(idBox.getValue());
-            openDialog("Information", "/fxml/information.fxml");
+            new Alert(Alert.AlertType.NONE, "Action successful", ButtonType.OK).show();
             Stage stage=(Stage) idBox.getScene().getWindow();
             stage.close();
         } catch (Exception e){
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
     }
-    }
-    /**
-     * Opens a dialog window with the provided title and FXML file path
-     */
-    private void openDialog(String title,String file ) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
-        Stage stage = new Stage();
-        stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle(title);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
-
     }
 }

@@ -92,6 +92,7 @@ public class UserController {
             stage.getIcons().add(new Image("images/ticket-icon.jpg"));
             stage.setResizable(false);
             stage.setScene(new Scene(loader.load()));
+            dialogStages.add(stage);
             stage.show();
             stage.setOnHiding(event -> {
                 ((Stage)userScreen.getScene().getWindow()).show();

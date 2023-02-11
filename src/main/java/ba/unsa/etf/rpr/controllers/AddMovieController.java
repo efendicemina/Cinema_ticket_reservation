@@ -64,24 +64,11 @@ public class AddMovieController {
             LocalDateTime localDateTime = localDate.atTime(hourBox.getValue(), minBox.getValue());
             Movie movie = admin.createMovie(nameField.getText(), genreField.getText(), localDateTime, durationBox.getValue());
             movieManager.add(movie);
-            openDialog();
-            Stage stage=(Stage) hourBox.getScene().getWindow();
+            new Alert(Alert.AlertType.NONE, "Action successful", ButtonType.OK).show();            Stage stage=(Stage) hourBox.getScene().getWindow();
             stage.close();
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-    }
-    /**
-     * Opens a dialog window if possible.
-     */
-    private void openDialog() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/information.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle("Information");
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
-
     }
 }

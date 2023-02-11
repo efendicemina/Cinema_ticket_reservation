@@ -107,26 +107,11 @@ public class UpdateMovieController {
             Movie movie = admin.createMovie(nameField.getText(), genreField.getText(), localDateTime, durationBox.getValue());
             movie.setId(idBox.getValue());
             movieManager.update(movie);
-            openDialog("Information", "/fxml/information.fxml");
+            new Alert(Alert.AlertType.NONE, "Action successful", ButtonType.OK).show();
             Stage stage=(Stage) idBox.getScene().getWindow();
             stage.close();
         } catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-    }
-    /**
-     *The openDialog method opens a new window with the given title and FXML file.
-     *@param title The title of the new window.
-     *@param file The filepath of the FXML file to be loaded in the new window.
-     *@throws IOException when there is a problem with loading the FXML file.
-     */
-    private void openDialog(String title,String file ) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
-        Stage stage = new Stage();
-        stage.setScene(new Scene((Parent) loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle(title);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
-
     }
 }

@@ -185,7 +185,7 @@ public class AdminController {
      *@param title String
      *@param file String
      */
-    private List<Stage> dialogStages = new ArrayList<>();
+    public static List<Stage> dialogStages = new ArrayList<>();
 
     private void openDialog(String title, String file) {
         try {
