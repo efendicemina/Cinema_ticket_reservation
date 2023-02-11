@@ -84,23 +84,12 @@ public class BookController {
             reservation.setSector(seatBox.getValue());
             reservation.setUser(user);
             reservationManager.add(reservation);
-            openDialog();
+            new Alert(Alert.AlertType.NONE, "Action successful", ButtonType.OK).show();
             Stage stage=(Stage) nameLabel.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    /**
-     * Opens dialogs if possible, if not it displays an alert.
-     */
-    private void openDialog() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/information.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle("Information");
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
 
-    }
 }

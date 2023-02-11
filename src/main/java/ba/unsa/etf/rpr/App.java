@@ -65,7 +65,6 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Options options = addOptions();
-        printFormattedOptions(options);
         CommandLineParser commandLineParser = new DefaultParser();
 
         CommandLine cl = commandLineParser.parse(options, args);
