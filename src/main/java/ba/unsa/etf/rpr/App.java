@@ -3,6 +3,7 @@ import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.business.ReservationManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Movie;
+import ba.unsa.etf.rpr.exception.MovieException;
 import org.apache.commons.cli.*;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -72,7 +73,6 @@ public class App {
         if((cl.hasOption(addMovie.getOpt()))) {
                try {
                    MovieManager movieManager = new MovieManager();
-                   System.out.println("Input in");
                    Movie movie = new Movie();
                    movie.setName(cl.getArgList().get(0));
                    movie.setGenre(cl.getArgList().get(1));
@@ -83,7 +83,8 @@ public class App {
                    System.out.println("You successfully added movie to database!");
                }
                catch(Exception e){
-                   System.out.println("Incorrect");
+                   System.out.println("Your format is not correct, please follow these guidelines when adding a movie:\n" +
+                           "Format: \"Name\" \"Genre\" \"yyyy-MM-dd HH:mm\" \"Duration\"");
                }
 
         }
@@ -91,7 +92,6 @@ public class App {
             try {
 
                 MovieManager movieManager = new MovieManager();
-                System.out.println("Input in");
                 List<Movie> list=movieManager.getAll();
                 List<Integer> ids= new ArrayList<>();
                 for(int i=0; i< list.size(); i++){
@@ -114,27 +114,32 @@ public class App {
                 }
             }
             catch(Exception e){
-                System.out.println("Incorrect");
+                System.out.println("Your format is not correct, please follow these guidelines when adding a movie:\n" +
+                        "Format: \"Id\" \"Name\" \"Genre\" \"yyyy-MM-dd HH:mm\" \"Duration\"");
             }
         }
         else if(cl.hasOption(deleteMovie.getOpt())) {
             try {
                 MovieManager movieManager = new MovieManager();
-                System.out.println("Input in");
                 List<Movie> list = movieManager.getAll();
                 List<Integer> ids = new ArrayList<>();
                 for (int i = 0; i < list.size(); i++) {
                     Movie movie = list.get(i);
                     ids.add(movie.getId());
                 }
-                if(ids.contains(Integer.valueOf(cl.getArgList().get(0)))) {
+                if (ids.contains(Integer.valueOf(cl.getArgList().get(0)))) {
                     movieManager.delete(Integer.parseInt(cl.getArgList().get(0)));
                     System.out.println("You successfully deleted movie from database!");
                 } else {
                     System.out.println("The given id doesn't exist in the database!");
                 }
-            } catch (Exception e) {
-                System.out.println("Incorrect");
+            }
+            catch (MovieException e) {
+                System.out.println("Tickets for this movie have already been bought, you cannot delete it!");
+            }
+             catch (Exception e) {
+                System.out.println("Your format is not correct, please follow these guidelines when adding a movie:\n" +
+                        "Format: \"Id\"");
             }
         }
         else if(cl.hasOption(getMovies.getOpt())){
