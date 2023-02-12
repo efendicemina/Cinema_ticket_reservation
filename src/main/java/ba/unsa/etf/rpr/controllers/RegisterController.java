@@ -1,9 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.UserManager;
-import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -45,12 +44,11 @@ public class RegisterController {
     private Label usernameMessage;
     @FXML
     private Label emailMessage;
-    private UserManager userManager=new UserManager();
+    private final UserManager userManager=new UserManager();
     /**
      * Retrieves the stage of the current window and call the close() method to close it.
-     * @param actionEvent actionEvent
      */
-    public void cancelButtonOnAction(ActionEvent actionEvent) {
+    public void cancelButtonOnAction() {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -74,10 +72,9 @@ public class RegisterController {
      *The registerButtonOnAction method is called when the register button is pressed.
      *It validates the input fields and if they are all filled and valid, it creates a new User object and adds it to the system.
      *If any of the fields are empty or the email address is not in valid format or the username is already taken, it shows an error message.
-     *@param actionEvent The event that triggered the method call.
      *@throws MovieException when there is any problem with the registration process.
      */
-    public void registerButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException {
+    public void registerButtonOnAction() throws MovieException {
         if (usernameField.getText().isEmpty()  || passwordField.getText().isEmpty()  || emailField.getText().isEmpty() ||
                 phoneField.getText().isEmpty() || nameField.getText().isEmpty() ) {
             emptyMessage.setText("Please fill the empty fields.");

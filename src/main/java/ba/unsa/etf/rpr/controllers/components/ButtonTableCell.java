@@ -1,5 +1,4 @@
 package ba.unsa.etf.rpr.controllers.components;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,13 +8,12 @@ import javafx.scene.layout.HBox;
 
 /**
  * Custom component for rendering table cell with one button (BOOK)
- *
  * @param <T> - Bean class represented in the table cells
  * @author Emina Efendic
  */
 public class ButtonTableCell<T> extends TableCell<T, T> {
 
-    private Button book;
+    private final Button book;
 
     /**
      * Default constructor
@@ -26,6 +24,11 @@ public class ButtonTableCell<T> extends TableCell<T, T> {
         book.setOnAction(buttonOne);
     }
 
+    /**
+     * Updates an item
+     * @param o T
+     * @param b boolean
+     */
     @Override
     protected void updateItem(T o, boolean b) {
         super.updateItem(o, b);

@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.exception.MovieException;
 
@@ -56,9 +55,9 @@ public class ReservationManager {
     public List<String> getBookedSeats(Integer id) throws MovieException {
         List<String> booked=new ArrayList<>();
         List<Reservation> all=getAll();
-        for(int i=0; i< all.size();i++) {
-            if(all.get(i).getMovie().getId()==id)
-            booked.add(all.get(i).getSector());
+        for (Reservation reservation : all) {
+            if (reservation.getMovie().getId() == id)
+                booked.add(reservation.getSector());
         }
         return booked;
     }

@@ -5,8 +5,15 @@ package ba.unsa.etf.rpr.domain;
  * @author Emina Efendic
  */
 public interface Idable {
-
+    /**
+     * Sets id
+     * @param id int
+     */
     void setId(int id);
 
+    /**
+     * Gets id
+     * @return id integer
+     */
     int getId();
 }

@@ -11,11 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- * @author Emina Efendic
  * CLI (Command Line Interface) implementation in following class
  * Even though this type of presentation layer (called CLI) is becoming past tense for GUI apps
  * it's good to see how you can manipulate data through command line and database also
- *
+ * @author Emina Efendic
  */
 public class App {
     /**
@@ -144,7 +143,7 @@ public class App {
         }
         else if(cl.hasOption(getMovies.getOpt())){
             MovieManager movieManager = new MovieManager();
-            movieManager.getAll().forEach(c -> System.out.println(c.getName()+ " ; " +c.getGenre()
+            movieManager.getAll().forEach(c -> System.out.println(c.getId()+ " ; "+c.getName()+ " ; " +c.getGenre()
             +" ; " +c.getDate_time()+ " ; " +c.getDuration()));
 
         }

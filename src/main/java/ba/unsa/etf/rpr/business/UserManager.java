@@ -42,7 +42,7 @@ public class UserManager {
      * Fetches User object form table users defined by given id.
      * @param id int
      * @return User object defined by given id
-     * @throws MovieException
+     * @throws MovieException in case of problems with db
      */
     public User getById(Integer id) throws MovieException {
         return DaoFactory.userDao().getById(id);

@@ -3,24 +3,15 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.exception.MovieException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 /**
  *UpdateMovieController class is responsible for updating existing movies.
  *It provides functionality for updating existing movie object by providing its id, name, genre, date and time of showing, and duration of the movie.
@@ -29,10 +20,8 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class UpdateMovieController {
     @FXML
     private ChoiceBox<Integer> idBox;
-    @FXML
-    private Label updateMessage;
-    private List<Integer> ids=new ArrayList<Integer>() ;
-    private MovieManager movieManager=new MovieManager();
+    private final List<Integer> ids= new ArrayList<>() ;
+    private final MovieManager movieManager=new MovieManager();
     @FXML
     private ChoiceBox<Integer> hourBox;
     @FXML
@@ -47,9 +36,9 @@ public class UpdateMovieController {
     DatePicker dateBox;
 
 
-    private Integer[] hour = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
-    private Integer[] min = {00, 10, 20, 30, 40, 50};
-    private Integer[] duration = {60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220};
+    private final Integer[] hour = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+    private final Integer[] min = {0, 10, 20, 30, 40, 50};
+    private final Integer[] duration = {60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220};
     /**
      *The initialize method is called when the controller is created.
      *It sets up the UI elements such as populating the choice boxes with data and adding listeners to certain elements.
@@ -60,8 +49,7 @@ public class UpdateMovieController {
     public void initialize() throws MovieException {
         dateBox.setEditable(false);
         List<Movie> list=movieManager.getAll();
-        for(int i=0; i< list.size(); i++){
-            Movie movie= list.get(i);
+        for (Movie movie : list) {
             ids.add(movie.getId());
         }
         idBox.getItems().addAll(ids);
@@ -70,7 +58,7 @@ public class UpdateMovieController {
         durationBox.getItems().addAll(duration);
         idBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             // Get the selected movie's information
-            Movie movie = null;
+            Movie movie;
             try {
                 movie = movieManager.getById(newValue);
                 // Populate the text boxes and choice boxes with the movie's information
@@ -93,10 +81,8 @@ public class UpdateMovieController {
      *It first validates the input fields, creates a new movie object with the new information,
      *sets its id to the selected id, and updates the movie in the system.
      *If there is any problem with the input fields or updating the movie, an error message will be shown.
-     *@param actionEvent The event that triggered the method call.
-     *@throws MovieException when there is any problem with updating the movie in the system.
      */
-    public void updateButtonOnAction(ActionEvent actionEvent) throws MovieException {
+    public void updateButtonOnAction() {
         try {
             movieManager.validateAddFields(nameField.getText(), genreField.getText(),
                     dateBox.toString(), hourBox.getValue(), minBox.getValue(), durationBox.getValue());

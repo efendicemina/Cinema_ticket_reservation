@@ -17,15 +17,20 @@ public class ButtonCellFactory<T> implements Callback<TableColumn<T, T>, TableCe
 
 
     /**
-     *
+     * Constructor for ButtonCellFactory
      * @param buttonOne - event handler button (BOOK)
      */
     public ButtonCellFactory(EventHandler<ActionEvent> buttonOne){
         this.buttonOne = buttonOne;
     }
 
+    /**
+     * Creates new instance of ButtonTableCell and returns it
+     * @param movieObjectTableColumn TableColumn<T, T>
+     * @return TableColumn<T, T>
+     */
     @Override
-    public TableCell<T, T> call(TableColumn<T, T> quoteObjectTableColumn) {
+    public TableCell<T, T> call(TableColumn<T, T> movieObjectTableColumn) {
         return new ButtonTableCell<>(buttonOne);
     }
 }

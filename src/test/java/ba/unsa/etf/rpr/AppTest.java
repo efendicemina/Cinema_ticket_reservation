@@ -1,10 +1,9 @@
 package ba.unsa.etf.rpr;
+
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.business.ReservationManager;
-import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.controllers.MyModel;
 import ba.unsa.etf.rpr.controllers.RegisterController;
-import ba.unsa.etf.rpr.dao.MovieDao;
 import ba.unsa.etf.rpr.dao.UserDao;
 import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.User;
@@ -14,42 +13,50 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 /**
- * Unit tests for simple App.
+ * Unit tests for Application, testing some specific situations, using mocking in last two tests.
+ * Mocking is used, so we do not have to interact with the real database.
  * @author Emina Efendic
  */
 public class AppTest {
+    /**
+     * Test that the getInstance method returns the single instance of the class
+     */
     @Test
     public void getInstanceTest() {
-        // Test that the getInstance method returns the single instance of the class
         MyModel model1 = MyModel.getInstance();
         MyModel model2 = MyModel.getInstance();
         assertSame(model1, model2);
     }
 
+    /**
+     * Test the setUser and getUser methods
+     */
     @Test
     public void setAndGetUserTest() {
-        // Test the setUser and getUser methods
         MyModel model = MyModel.getInstance();
         User user = new User();
         model.setUser(user);
         assertSame(user, model.getUser());
     }
 
+    /**
+     * Test the setMovie and getMovie methods
+     */
     @Test
     public void setAndGetMovieTest() {
-        // Test the setMovie and getMovie methods
         MyModel model = MyModel.getInstance();
         Movie movie = new Movie();
         model.setMovie(movie);
         assertSame(movie, model.getMovie());
     }
 
+    /**
+     * Tests if email are valid, all emails in this test are valid.
+     */
     @Test
     public void testValidEmails() {
         String[] validEmails = {
@@ -65,6 +72,9 @@ public class AppTest {
 
         }
     }
+    /**
+     * Tests if email are invalid, all emails in this test are invalid.
+     */
     @Test
     public void testInvalidEmails() {
         String[] invalidEmails = {
@@ -79,6 +89,10 @@ public class AppTest {
             assertFalse( (new RegisterController()).checkEmail(email));
         }
     }
+
+    /**
+     * Test validation of add fields in the app. In this case fields are not properly filled in.
+     */
     @Test
     public void validateAddFieldsTest() {
         try {
@@ -88,6 +102,9 @@ public class AppTest {
             assertTrue(e.getMessage().contains("To successfully perform an action, all fields must be filled in!"));
         }
     }
+    /**
+     * Test validation of delete fields in the app. In this case fields are not properly filled in.
+     */
     @Test
     public void validateDeleteFieldsTest() {
         try {
@@ -97,6 +114,9 @@ public class AppTest {
             assertTrue(e.getMessage().contains("To successfully perform an action, id field must be filled in!"));
         }
     }
+    /**
+     * Test validation of seat fields in the app. In this case fields are properly filled in.
+     */
     @Test
     public void validateSeatFieldTest() {
         try {
@@ -106,12 +126,15 @@ public class AppTest {
             fail("Problem with validateSeatField method.");
         }
     }
-    private UserManager userManager;
+
     @Mock
     private UserDao userDao;
 
     public User user = new User();
 
+    /**
+     * Set up for tests using mocking.
+     */
     @BeforeEach
     public void setUp() {
         user.setId(1);
@@ -122,17 +145,22 @@ public class AppTest {
         user.setEmail("eefendic1@etf.unsa.ba");
         user.setName("Emina Efendic");
         MockitoAnnotations.openMocks(this);
-        userManager = new UserManager();
     }
 
-
+    /**
+     * Test if add option in the app is working correctly.
+     * @throws MovieException in case of problems
+     */
     @Test
     public void addTest() throws  MovieException {
         userDao.add(user);
         verify(userDao).add(user);
     }
 
-
+    /**
+     * Test if update option in the app is working correctly.
+     * @throws Exception in case of problems
+     */
     @Test
     void updateTest() throws Exception {
         user.setPassword("emina123");

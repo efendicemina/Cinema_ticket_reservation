@@ -67,7 +67,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
      */
     @Override
     public Map<String, Object> object2row(User object) {
-        Map<String, Object> item = new TreeMap<String, Object>();
+        Map<String, Object> item = new TreeMap<>();
         item.put("id", object.getId());
         item.put("name", object.getName());
         item.put("phone", object.getPhone());
@@ -81,10 +81,9 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
      * Finds given username in users table if it already exists.
      * @param usernameField String
      * @return boolean
-     * @throws MovieException thrown in case of problem with db
      */
     @Override
-    public boolean findUsername(String usernameField) throws MovieException{
+    public boolean findUsername(String usernameField) {
         String insert = "SELECT count(username) from users where username='" + usernameField +"'";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -102,10 +101,9 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
      * Checks if admin is logging in.
      * @param usernameField String
      * @return boolean
-     * @throws MovieException thrown in case of problem with db
      */
     @Override
-    public boolean isAdmin(String usernameField) throws MovieException {
+    public boolean isAdmin(String usernameField) {
         String insert = "SELECT username from users where admin=1";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -124,10 +122,9 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
      * @param usernameTextField String
      * @param passwordField String
      * @return Integer id if it matches, null if not
-     * @throws MovieException thrown in case of problem with db
      */
     @Override
-    public Integer checkUsernamePassword(String usernameTextField, String passwordField) throws MovieException{
+    public Integer checkUsernamePassword(String usernameTextField, String passwordField) {
         String insert = "SELECT id from users where username='" + usernameTextField + "' AND password='"
                 + passwordField + "'";
         try {

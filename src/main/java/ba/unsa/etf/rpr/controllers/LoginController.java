@@ -32,12 +32,11 @@ public class LoginController  {
     @FXML
     private TextField passwordField;
 
-    private UserManager userManager=new UserManager();
+    private final UserManager userManager=new UserManager();
     /**
      * Retrieves the stage of the current window and call the close() method to close it.
-     * @param actionEvent actionEvent
      */
-    public void CancelButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    public void CancelButtonOnAction() {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -47,7 +46,7 @@ public class LoginController  {
      * Opens two different windows, admin panel or user panel.
      * @param actionEvent ActionEvent
      * @throws MovieException in case of problems with db
-     * @throws IOException
+     * @throws IOException in case of problems with opening dialogs
      */
     public void loginButtonOnAction(javafx.event.ActionEvent actionEvent) throws MovieException, IOException {
         if(usernameTextField.getText().trim().isEmpty() && passwordField.getText().trim().isEmpty()){

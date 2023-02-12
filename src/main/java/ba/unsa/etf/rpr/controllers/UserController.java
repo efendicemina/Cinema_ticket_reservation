@@ -5,7 +5,6 @@ import ba.unsa.etf.rpr.controllers.components.ButtonCellFactory;
 import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.exception.MovieException;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,7 +48,7 @@ public class UserController {
     public TableColumn<Movie, Integer> durationColumn;
     @FXML
     public TableColumn<Movie, Integer> bookingColumn;
-    private List<Stage> dialogStages = new ArrayList<>();
+    private final List<Stage> dialogStages = new ArrayList<>();
     private Movie movie;
     /**
      *It sets up the UI elements such as the movie table, populating the table with data, setting cell value factories and creating button cell factory.
@@ -57,21 +56,15 @@ public class UserController {
      *It also calls the refreshMovies method to populate the table with all available movies.
      */
     public void initialize(){
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("name"));
-        genreColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("genre"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Movie, LocalDateTime>("date_time"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("duration"));
-        bookingColumn.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date_time"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        bookingColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         bookingColumn.setCellFactory(new ButtonCellFactory(editEvent -> {
-            try {
                 int movieId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
                 bookScene(movieId);
-            }
-            catch(Exception e){
-
-            }
-
         }));
 
         refreshMovies();
@@ -80,7 +73,6 @@ public class UserController {
      *The bookScene method is used to handle the booking of a movie.
      *it retrieves the movie that matches the given id, sets it to the MyModel instance and opens the book.fxml.
      *@param movieId the id of the movie that user wants to book
-     *@throws Exception if there is a problem with loading the fxml file or getting the movie by id.
      */
     public void bookScene(Integer movieId){
         try{
@@ -131,20 +123,16 @@ public class UserController {
     /**
      *The aboutOnAction method is used to handle the about button click event.
      *It opens a dialog box for about information by calling the openDialog method.
-     *@param actionEvent the action event that triggers the about button click
      */
-    public void aboutOnAction(ActionEvent actionEvent) {
-        openDialog("About", "/fxml/user_about.fxml");
+    public void aboutOnAction() {
+        openDialog();
     }
     /**
-     *The openDialog method opens a new window with the given title and FXML file.
-     *@param title The title of the new window.
-     *@param file The filepath of the FXML file to be loaded in the new window.
-     *@throws IOException when there is a problem with loading the FXML file.
+     * The openDialog method opens a new window with the given title and FXML file.
      */
-    private void openDialog(String title, String file) {
+    private void openDialog() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/user_about.fxml"));
             Stage stage = new Stage();
             stage.getIcons().add(new Image("images/ticket-icon.jpg"));
             stage.setResizable(false);
@@ -159,6 +147,10 @@ public class UserController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
+    /**
+     * Closes all dialogs when needed.
+     */
     private void closeAllDialogs() {
         for (Stage stage : dialogStages) {
             stage.close();

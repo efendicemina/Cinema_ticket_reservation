@@ -7,7 +7,6 @@ import ba.unsa.etf.rpr.domain.Movie;
 import ba.unsa.etf.rpr.domain.Reservation;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exception.MovieException;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +21,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -31,10 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 /**
- *
  *AdminController class is responsible for managing movies, users and reservations.
  *It displays current movies, users, and reservations in the tables.
  *@author Emina Efendic
@@ -157,37 +153,35 @@ public class AdminController {
      *Opens add movie dialog window
      */
     public void addMovieOnAction() {
-        openDialog("Add movie", "/fxml/movie_add.fxml");
+        openDialog("/fxml/movie_add.fxml");
 
     }
     /**
      *Opens delete movie dialog window
      */
     public void deleteMovieOnAction() {
-        openDialog("Delete movie", "/fxml/movie_delete.fxml");
+        openDialog("/fxml/movie_delete.fxml");
     }
     /**
      *Opens update movie dialog window
      */
 
     public void updateMovieOnAction() {
-        openDialog("Update movie", "/fxml/movie_update.fxml");
+        openDialog( "/fxml/movie_update.fxml");
     }
 
     /**
      *Opens about window
      */
     public void aboutOnAction() {
-        openDialog("About", "/fxml/admin_about.fxml");
+        openDialog("/fxml/admin_about.fxml");
     }
+    public static List<Stage> dialogStages = new ArrayList<>();
     /**
      *Opens dialogs if possible, if not it displays an alert.
-     *@param title String
      *@param file String
      */
-    public static List<Stage> dialogStages = new ArrayList<>();
-
-    private void openDialog(String title, String file) {
+    private void openDialog(String file) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
@@ -206,6 +200,9 @@ public class AdminController {
         }
     }
 
+    /**
+     * Closes all dialogs if needed
+     */
     private void closeAllDialogs() {
         for (Stage stage : dialogStages) {
             stage.close();

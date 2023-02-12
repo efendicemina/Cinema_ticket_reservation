@@ -3,17 +3,11 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.MovieManager;
 import ba.unsa.etf.rpr.domain.Movie;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 /**
  *AddMovieController class is responsible for adding new movies to the system.
@@ -46,6 +40,7 @@ public class AddMovieController {
      */
     @FXML
     public void initialize() {
+        dateField.setEditable(false);
         hourBox.getItems().addAll(hour);
         minBox.getItems().addAll(min);
         durationBox.getItems().addAll(duration);
@@ -53,7 +48,6 @@ public class AddMovieController {
     /**
      * Handles the 'OK' button click event, creates a new movie object using user input, adds it to the system and displays a confirmation dialog.
      * In case of invalid input, it displays an error message.
-     *
      */
     public void okButtonOnAction() {
         try {

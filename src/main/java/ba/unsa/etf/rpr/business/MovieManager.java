@@ -91,7 +91,7 @@ public class MovieManager {
      * Fetches Movie object form table movies defined by given id.
      * @param id int
      * @return Movie object defined by given id
-     * @throws MovieException
+     * @throws MovieException in case of problems with db
      */
     public  Movie getById(int id) throws MovieException{
         return DaoFactory.movieDao().getById(id);
