@@ -8,7 +8,7 @@ import javafx.util.Callback;
 
 /**
  * Button cell factory for creation of buttons for each cell in the table
- * @param <T>
+ * @param <T> type
  * @author Emina Efendic
  */
 public class ButtonCellFactory<T> implements Callback<TableColumn<T, T>, TableCell<T, T>> {

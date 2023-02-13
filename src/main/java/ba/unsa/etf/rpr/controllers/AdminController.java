@@ -100,7 +100,6 @@ public class AdminController {
         user_idColumn.setCellValueFactory(new PropertyValueFactory<>("user"));
         sectorColumn.setCellValueFactory(new PropertyValueFactory<>("sector"));
         refreshReservations();
-
     }
 
     /**
